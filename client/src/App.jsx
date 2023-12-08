@@ -1,3 +1,14 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Navbar from "./layouts/Navbar";
+import Home from "./pages/Home";
+
 export default function App() {
-  return <h1 style={{ textAlign: "center" }}>2.35</h1>;
+  return (
+    <BrowserRouter>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
