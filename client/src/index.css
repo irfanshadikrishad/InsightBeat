@@ -4,6 +4,7 @@
   --color: #1b1b1b;
   --background: whitesmoke;
   --primary: white;
+  --secondary: #92E3A9;
   --footer-l: #F7F8FA;
 }
 
@@ -298,23 +299,157 @@ body {
   opacity: 50%;
 }
 
-footer {
-  background-color: var(--footer-l);
-}
 
 footer {
   background-color: var(--footer-l);
   padding: 30px 0 40px 0;
 }
 
+.footer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
 .footer_header {
   line-height: 22px;
+  padding-bottom: 10px;
 }
 
 .footer_header>p {
   text-transform: uppercase;
   opacity: 50%;
   font-size: 0.8rem;
+}
+
+.footer_cat {
+  font-size: 0.5rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--background);
+  background-color: var(--primary);
+  padding: 2px 10px;
+  border-radius: 7px;
+  font-weight: 500;
+}
+
+.footer_article_header {
+  font-size: 1.125rem;
+  line-height: 18px;
+  padding: 5px 0 10px 0;
+}
+
+.footer_author {
+  font-size: 0.75rem;
+}
+
+span.footer_article_date {
+  opacity: 50%;
+}
+
+.footer_article {
+  padding-bottom: 10px;
+}
+
+.footer_browse {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.footer_browse_main>hr {
+  opacity: 10%;
+}
+
+.footer_browse_count {
+  padding: 1.5px 10px;
+  color: var(--background);
+  background-color: #1b1b1b;
+  border-radius: 25px;
+  font-size: .8rem;
+}
+
+.footer_browse>a {
+  text-decoration: none;
+  color: var(--color);
+}
+
+.footer_social {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 10px;
+}
+
+.footer_social>a {
+  text-decoration: none;
+  color: var(--color);
+  font-size: 1.2rem;
+}
+
+.copyright {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  opacity: 50%;
+  padding-top: 50px;
+}
+
+
+.copyright>p>a {
+  text-decoration: none;
+  color: var(--color);
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color);
+}
+
+.register {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.register_form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.register_form>input {
+  border: none;
+  background-color: var(--primary);
+  font-size: 1rem;
+  padding: 10px;
+  border-radius: 7px;
+  outline: none;
+}
+
+.register_form>button {
+  color: var(--background);
+  background-color: var(--secondary);
+  border: none;
+  width: 200px;
+  font-size: 1rem;
+  padding: 10px;
+  border-radius: 7px;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 980px) {
