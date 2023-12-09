@@ -18,7 +18,9 @@ export default function Navbar() {
             <a target="_blank" href="https://github.com/irfanshadikrishad" rel="noreferrer">{<FaInstagram />}</a>
             <a target="_blank" href="https://github.com/irfanshadikrishad" rel="noreferrer">{<FaGithub />}</a>
           </div>
-          <h1 className="navbar_title">001</h1>
+          <NavLink to="/">
+            <h1 className="navbar_title">InsightBeat</h1>
+          </NavLink>
           <div className="navbar_lr">
             <NavLink className="navbar_l" to="/login">
               Login
