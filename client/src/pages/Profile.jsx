@@ -4,6 +4,7 @@ import Blog from "../components/Blog";
 export default function Profile() {
     const [blogs, setBlogs] = useState(true);
     const [create, setCreate] = useState(false);
+    const [edit, setEdit] = useState(false);
     return <>
         <section className="container">
             <section className="profile">
@@ -28,13 +29,19 @@ export default function Profile() {
             <section className="profile_relatables">
                 <button onClick={() => {
                     setBlogs(true);
-                    setCreate(false)
+                    setCreate(false);
+                    setEdit(false);
                 }}>My Blogs</button>
                 <button onClick={() => {
                     setBlogs(false);
-                    setCreate(true)
+                    setCreate(true);
+                    setEdit(false);
                 }}>Create Blog</button>
-                <button>Edit Profile</button>
+                <button onClick={() => {
+                    setBlogs(false);
+                    setCreate(false);
+                    setEdit(true);
+                }}>Edit Profile</button>
             </section>
             {blogs && <section>
                 <h1 className="my_blogs">&lt; My Blogs &gt;</h1>
@@ -64,6 +71,16 @@ export default function Profile() {
                         </select>
                     </div>
                     <button type="submit">Create</button>
+                </form>
+            </section>}
+            {edit && <section className="edit_profile">
+                <form className="edit_profile_form">
+                    <h1>&lt; Edit Profile &gt;</h1>
+                    <input type="url" placeholder="Avatar Url" />
+                    <input type="text" placeholder="Your Name" />
+                    <input type="text" placeholder="Username" />
+                    <input type="email" placeholder="Your Email" />
+                    <button type="submit">Save</button>
                 </form>
             </section>}
         </section>

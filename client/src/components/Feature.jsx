@@ -24,10 +24,10 @@ export default function Feature() {
                     </div>
                 </div>
                 <p className="feature_desc">Its sometimes her behaviour are contented. Do listening am eagerness oh objection collected. Together happy feelings continue juvenile had off..</p>
-                <div>
+                <div className="feature_continue_main">
                     <hr />
                     <div className="feature_continue">
-                        <a>Continue Reading &gt;</a>
+                        <a href="/">Continue Reading &gt;</a>
                     </div>
                 </div>
             </div>
