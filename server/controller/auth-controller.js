@@ -23,7 +23,11 @@ const register = async (req, res) => {
             password: hashedPassword,
           });
           const author = user.save();
-          res.status(201).json({ message: "registered successfully" });
+          res.status(201).json({
+            registered: author._id,
+            token: user.genJWT(),
+            id: user._id,
+          });
         });
       });
     }

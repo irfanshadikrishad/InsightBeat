@@ -1,4 +1,9 @@
 import { Schema, model } from "mongoose";
+import pkg from "jsonwebtoken";
+import { config } from "dotenv";
+
+config();
+const { sign } = pkg;
 
 const authorSchema = new Schema({
   name: {
@@ -18,6 +23,17 @@ const authorSchema = new Schema({
     required: true,
   },
 });
+
+authorSchema.methods.genJWT = function () {
+  return sign(
+    {
+      id: this._id.toString(),
+      email: this.email,
+    },
+    process.env.SECRET,
+    { expiresIn: "30d" }
+  );
+};
 
 const Author = model("Author", authorSchema);
 
