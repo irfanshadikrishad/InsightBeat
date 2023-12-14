@@ -1,4 +1,6 @@
-import { useState } from "react"
+import { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Login() {
     const [login, setLogin] = useState({
@@ -9,9 +11,33 @@ export default function Login() {
         const { value, name } = e.target;
         setLogin({ ...login, [name]: value });
     }
-    const submit = (e) => {
+    function errorToast(error) {
+        toast.error(error, {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        });
+    }
+    const submit = async (e) => {
         e.preventDefault();
-        console.log(login);
+        const request = await fetch("http://localhost:3000/api/auth/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(login)
+        })
+        const response = await request.json();
+        if (request.status === 200) {
+            console.log(response);
+        } else {
+            errorToast(response.message);
+        }
     }
     return <>
         <section className="container register">
@@ -41,6 +67,7 @@ export default function Login() {
                     <button type="submit">Login</button>
                 </form>
             </div>
+            <ToastContainer />
         </section>
     </>
 }

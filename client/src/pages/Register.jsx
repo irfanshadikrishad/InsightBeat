@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Register() {
     const [register, setRegister] = useState({
@@ -11,9 +13,33 @@ export default function Register() {
         const { value, name } = e.target;
         setRegister({ ...register, [name]: value });
     }
-    const submit = (e) => {
+    function errorToast(error) {
+        toast.error(error, {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        });
+    }
+    const submit = async (e) => {
         e.preventDefault();
-        console.log(register);
+        const request = await fetch("http://localhost:3000/api/auth/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(register)
+        })
+        const response = await request.json();
+        if (request.status === 201) {
+            console.log(response);
+        } else {
+            errorToast("Invalid Credentials!")
+        }
     }
     return <>
         <section className="container register">
@@ -55,6 +81,7 @@ export default function Register() {
                     <button type="submit">Register</button>
                 </form>
             </div>
+            <ToastContainer />
         </section>
     </>
 }

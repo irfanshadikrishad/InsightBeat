@@ -1,3 +1,4 @@
+import cors from "cors";
 import chalk from "chalk";
 import express from "express";
 import { config } from "dotenv";
@@ -7,6 +8,12 @@ import authRouter from "./router/auth-router.js";
 config();
 const app = express();
 app.use(express.json());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: "*",
+  })
+);
 app.use("/api/auth", authRouter);
 
 app.listen(process.env.PORT, async () => {
