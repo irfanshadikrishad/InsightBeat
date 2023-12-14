@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../store/auth.jsx";
 // ICONS
 import { FaTwitter } from "react-icons/fa6";
 import { FaFacebookF } from "react-icons/fa";
@@ -8,6 +9,7 @@ import { IoSearch } from "react-icons/io5";
 import { HiMiniBars3 } from "react-icons/hi2";
 
 export default function Navbar() {
+  const { isLoggedIn } = useAuth();
   return (
     <nav>
       <div className="navbar_border">
@@ -21,14 +23,17 @@ export default function Navbar() {
           <NavLink to="/">
             <h1 className="navbar_title">InsightBeat</h1>
           </NavLink>
-          <div className="navbar_lr">
+          {isLoggedIn ? <div className="navbar_lr">
+            <NavLink to="/profile" className="navbar_l">Profile</NavLink>
+            <NavLink to="/logout" className="navbar_l">Logout</NavLink>
+          </div> : <div className="navbar_lr">
             <NavLink className="navbar_l" to="/login">
               Login
             </NavLink>
             <NavLink className="navbar_r" to="/register">
               Become an Author
             </NavLink>
-          </div>
+          </div>}
         </div>
       </div>
       {/* breadcrumb */}

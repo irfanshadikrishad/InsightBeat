@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useAuth } from "../store/auth.jsx";
 
 export default function Register() {
+    const { storeTokenInLS } = useAuth();
     const [register, setRegister] = useState({
         name: "",
         email: "",
@@ -36,7 +38,7 @@ export default function Register() {
         })
         const response = await request.json();
         if (request.status === 201) {
-            console.log(response);
+            storeTokenInLS(response.token);
         } else {
             errorToast("Invalid Credentials!")
         }

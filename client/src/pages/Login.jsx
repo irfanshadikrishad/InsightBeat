@@ -1,8 +1,12 @@
 import { useState } from "react";
+import { useAuth } from "../store/auth.jsx";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Login() {
+    const { storeTokenInLS } = useAuth();
+    const navigate = useNavigate();
     const [login, setLogin] = useState({
         email: "",
         password: ""
@@ -34,7 +38,8 @@ export default function Login() {
         })
         const response = await request.json();
         if (request.status === 200) {
-            console.log(response);
+            storeTokenInLS(response.token);
+            navigate("/");
         } else {
             errorToast(response.message);
         }
