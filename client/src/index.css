@@ -564,6 +564,7 @@ span.footer_article_date {
   border: none;
   padding: 10px;
   border-radius: 7px;
+  cursor: pointer;
 }
 
 .create_form_cat>select {
