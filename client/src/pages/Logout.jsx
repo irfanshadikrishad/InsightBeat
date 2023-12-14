@@ -3,10 +3,11 @@ import { useAuth } from "../store/auth.jsx";
 import { Navigate } from "react-router-dom";
 
 export default function Logout() {
-    const { deleteTokenInLS } = useAuth();
+    const { deleteTokenInLS, setIsLoggedIn } = useAuth();
 
     useEffect(() => {
         deleteTokenInLS();
-    }, [deleteTokenInLS])
+        setIsLoggedIn(false);
+    }, [deleteTokenInLS, setIsLoggedIn])
     return <Navigate to="/login" />
 }

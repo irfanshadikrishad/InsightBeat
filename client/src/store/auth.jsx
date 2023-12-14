@@ -6,8 +6,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     // eslint-disable-next-line no-unused-vars
     const [token, setToken] = useState(localStorage.getItem("logger"));
-
-    let isLoggedIn = !!token;
+    const [isLoggedIn, setIsLoggedIn] = useState(!!token);
 
     const storeTokenInLS = (serverToken) => {
         return localStorage.setItem("logger", serverToken);
@@ -17,7 +16,7 @@ export const AuthProvider = ({ children }) => {
         return localStorage.removeItem("logger");
     }
 
-    return <AuthContext.Provider value={{ storeTokenInLS, isLoggedIn, deleteTokenInLS }}>
+    return <AuthContext.Provider value={{ storeTokenInLS, isLoggedIn, deleteTokenInLS, setIsLoggedIn }}>
         {children}
     </AuthContext.Provider>
 }

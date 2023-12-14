@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Login() {
-    const { storeTokenInLS } = useAuth();
+    const { storeTokenInLS, setIsLoggedIn } = useAuth();
     const navigate = useNavigate();
     const [login, setLogin] = useState({
         email: "",
@@ -39,6 +39,7 @@ export default function Login() {
         const response = await request.json();
         if (request.status === 200) {
             storeTokenInLS(response.token);
+            setIsLoggedIn(response.token);
             navigate("/");
         } else {
             errorToast(response.message);
