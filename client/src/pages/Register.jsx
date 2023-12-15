@@ -40,7 +40,7 @@ export default function Register() {
         if (request.status === 201) {
             storeTokenInLS(response.token);
         } else {
-            errorToast("Invalid Credentials!")
+            errorToast(response.message);
         }
     }
     return <>

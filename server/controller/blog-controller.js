@@ -3,8 +3,8 @@ import Blog from "../models/blog-model.js";
 
 const createBlog = async (req, res) => {
   try {
-    const { title, body, image, category } = await req.body;
-    const blog = new Blog({ title, body, image, category });
+    const { title, body, image, category, author } = await req.body;
+    const blog = new Blog({ title, body, image, category, author });
     const savedBlog = await blog.save();
     console.log(chalk.cyan(`created ${savedBlog._id}`));
     res.status(201).json({ message: "Blog Posted" });

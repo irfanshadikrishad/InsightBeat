@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useAuth } from "../store/auth";
 
 export default function CreateBlog() {
+    const { user } = useAuth();
     const [create, setCreate] = useState({
         title: "",
         body: "",
         image: "",
-        category: "Travel"
+        category: "Travel",
+        author: user && user.username
     })
     const handleInput = (e) => {
         const { value, name } = e.target;
@@ -53,7 +56,8 @@ export default function CreateBlog() {
                 title: "",
                 body: "",
                 image: "",
-                category: "Travel"
+                category: "Travel",
+                author: user && user.username
             })
         } else {
             errorToast(response.message);

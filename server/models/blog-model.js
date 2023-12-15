@@ -16,6 +16,10 @@ const createSchema = new Schema({
   image: {
     type: String,
   },
+  author: {
+    type: String,
+    required: true,
+  },
 });
 
 const Blog = model("Blog", createSchema);
