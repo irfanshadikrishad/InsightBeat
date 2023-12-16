@@ -1,29 +1,50 @@
+import { useEffect, useState } from "react"
 import { NavLink } from "react-router-dom"
 
 export default function Feature() {
+    const [feature, setFeature] = useState({});
+
+    const feat = async () => {
+        const request = await fetch("http://localhost:3000/api/blog/feature",
+            {
+                method: "GET"
+            })
+        const response = await request.json();
+        if (request.status === 200) {
+            setFeature(response);
+        } else {
+            console.log(response);
+        }
+    }
+    console.log(feature);
+    useEffect(() => {
+        feat();
+    }, [])
     return <>
         <section className="feature">
-            <img src="https://www.3forty.media/zosia/demo-6/wp-content/uploads/2022/03/hulki-okan-tabak-x3kQTL7yw30-unsplash-1024x683.jpg"
+            <img src={feature && feature.image}
                 alt="travel"
                 className="feature_img" />
             <div className="feature_right">
                 <div>
-                    <NavLink to="/travel" className="feature_cat">
-                        Travel
+                    <NavLink to={`/${feature.category}`} className="feature_cat">
+                        {feature && feature.category}
                     </NavLink>
-                    <a href="" className="feature_title"><h1>Travel in the distant stars.</h1></a>
+                    <a href="" className="feature_title">
+                        <h1>{feature && String(feature.title).slice(0, 33) + "..."}</h1>
+                    </a>
                 </div>
                 <div className="feature_author">
                     <img className="feature_author_avatar"
-                        src="https://i.pinimg.com/564x/6a/90/58/6a90586e0639a63565bdf9947b943f04.jpg"
+                        src="https://i.pinimg.com/564x/ea/06/ff/ea06ff188085acfab02f046996afbe0e.jpg"
                         alt="avatar" />
                     <div className="feature_auth">
                         <p><span className="dim_i">
-                            by </span><a>William Lewis</a></p>
-                        <p className="feature_date">March 28, 2023</p>
+                            by </span><a>{feature && feature.author}</a></p>
+                        <p className="feature_date">{feature && String(feature.createdAt).slice(0, 10)}</p>
                     </div>
                 </div>
-                <p className="feature_desc">Its sometimes her behaviour are contented. Do listening am eagerness oh objection collected. Together happy feelings continue juvenile had off..</p>
+                <p className="feature_desc">{feature && String(feature.body).slice(0, 100) + "..."}</p>
                 <div className="feature_continue_main">
                     <hr />
                     <div className="feature_continue">

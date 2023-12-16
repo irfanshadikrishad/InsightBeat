@@ -101,4 +101,42 @@ const politics = async (req, res) => {
   }
 };
 
-export { createBlog, userBlog, fashion, lifestyle, travel, beauty, politics };
+const trending = async (req, res) => {
+  try {
+    const trending = await Blog.find().limit(4);
+    if (trending) {
+      res.status(200).json(trending);
+    } else {
+      res.status(404).json({ message: "Empty!" });
+    }
+  } catch (error) {
+    console.log(chalk.magenta(`[trending] ${error.message}`));
+    res.status(400).json({ message: error.message });
+  }
+};
+
+const feature = async (req, res) => {
+  try {
+    const featureBlogs = await Blog.findOne();
+    if (featureBlogs) {
+      res.status(200).json(featureBlogs);
+    } else {
+      res.status(404).json({ message: "Empty!" });
+    }
+  } catch (error) {
+    console.log(chalk.magenta(`[feature] ${error.message}`));
+    res.status(400).json({ message: error.message });
+  }
+};
+
+export {
+  createBlog,
+  userBlog,
+  fashion,
+  lifestyle,
+  travel,
+  beauty,
+  politics,
+  trending,
+  feature,
+};

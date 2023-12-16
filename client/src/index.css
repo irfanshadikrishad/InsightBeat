@@ -144,6 +144,7 @@ body {
   background-color: var(--primary);
   border-radius: 8px;
   margin-bottom: 20px;
+  align-items: center;
 }
 
 .feature_img {
@@ -173,6 +174,7 @@ body {
   display: flex;
   align-items: center;
   gap: 15px;
+  padding: 15px 0;
 }
 
 .feature_author_avatar {
