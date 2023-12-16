@@ -1,24 +1,24 @@
 import { NavLink } from "react-router-dom";
 
-export default function Blog() {
+// eslint-disable-next-line react/prop-types
+export default function Blog({ category, title, body, author, date }) {
     return <article className="blog">
-        <NavLink to="/" className="blog_cat">travel</NavLink>
+        <NavLink to="/" className="blog_cat">{category}</NavLink>
 
-        <h1 className="blog_title">Lorem ipsum, dolor sit amet consectetur adipisicing.</h1>
+        <h1 className="blog_title">{title}</h1>
 
         <div className="author_desc">
             <img className="feature_author_avatar"
-                src="https://i.pinimg.com/736x/eb/3a/04/eb3a047cef0f58a921923788dc613997.jpg"
+                src="https://i.pinimg.com/564x/ea/06/ff/ea06ff188085acfab02f046996afbe0e.jpg"
                 alt="avatar" />
             <div>
                 <p><span className="dim_i">
-                    by </span><a>Grim Winston</a></p>
-                <p className="feature_date">March 28, 2023</p>
+                    by </span><a>{author}</a></p>
+                <p className="feature_date">{date}</p>
             </div>
         </div>
         <p className="blog_body">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste,
-            vel hic quisquam sunt necessitatibus accusantium distinctio placeat quae asperiores quo!
+            {body}
         </p>
         <div className="blog_footer">
             <hr />

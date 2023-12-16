@@ -5,6 +5,7 @@ export const AuthContext = createContext();
 // eslint-disable-next-line react/prop-types
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
     // eslint-disable-next-line no-unused-vars
     const [token, setToken] = useState(localStorage.getItem("logger"));
     const [isLoggedIn, setIsLoggedIn] = useState(!!token);
@@ -28,6 +29,7 @@ export const AuthProvider = ({ children }) => {
             const response = await request.json();
             if (request.status === 200) {
                 setUser(response)
+                setLoading(false);
             } else {
                 setUser(null)
             }
@@ -46,7 +48,8 @@ export const AuthProvider = ({ children }) => {
         isLoggedIn,
         deleteTokenInLS,
         setIsLoggedIn,
-        user
+        user,
+        loading
     }}>
         {children}
     </AuthContext.Provider>

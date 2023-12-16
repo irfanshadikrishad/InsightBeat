@@ -14,4 +14,16 @@ const createBlog = async (req, res) => {
   }
 };
 
-export { createBlog };
+const userBlog = async (req, res) => {
+  try {
+    const { username } = await req.body;
+    if (username) {
+      const userBlogs = await Blog.find({ author: username });
+      res.status(200).json(userBlogs);
+    }
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+export { createBlog, userBlog };
