@@ -19,7 +19,7 @@ export default function CreateBlog() {
     function errorToast(error) {
         toast.warn(error, {
             position: "top-right",
-            autoClose: 2000,
+            autoClose: 1000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
@@ -31,7 +31,7 @@ export default function CreateBlog() {
     function successToast(success) {
         toast.success(success, {
             position: "top-right",
-            autoClose: 2000,
+            autoClose: 1000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
@@ -95,6 +95,7 @@ export default function CreateBlog() {
                     <option value="Beauty">Beauty</option>
                     <option value="Games">Games</option>
                     <option value="Politics">Politics</option>
+                    <option value="Lifestyle">Lifestyle</option>
                 </select>
             </div>
             <button type="submit">Create</button>

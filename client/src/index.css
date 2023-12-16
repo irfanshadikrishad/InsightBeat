@@ -622,6 +622,16 @@ span.footer_article_date {
   font-weight: 300;
 }
 
+.individual {
+  padding: 20px 0;
+}
+
+.individuals {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+
 @media screen and (max-width: 980px) {
   .container {
     width: 80%;
