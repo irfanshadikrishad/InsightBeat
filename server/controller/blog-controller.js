@@ -96,6 +96,20 @@ const politics = async (req, res) => {
   }
 };
 
+const games = async (req, res) => {
+  try {
+    const gamesBlogs = await Blog.find({ category: "Games" });
+    if (gamesBlogs) {
+      res.status(200).json(gamesBlogs);
+    } else {
+      res.status(404).json({ message: "Empty!" });
+    }
+  } catch (error) {
+    console.log(chalk.magenta(`[games] ${error.message}`));
+    res.status(400).json({ message: error.message });
+  }
+};
+
 const trending = async (req, res) => {
   try {
     const trending = await Blog.find().limit(4);
@@ -134,6 +148,67 @@ const blogs = async (req, res) => {
   }
 };
 
+const editorsPick = async (req, res) => {
+  try {
+    const editorsPickBlogs = await Blog.find().limit(4).sort({ title: -1 });
+    res.status(200).json(editorsPickBlogs);
+  } catch (error) {
+    console.log(chalk.magenta(`[editorsPick] ${error.message}`));
+    res.status(400).json({ message: error.message });
+  }
+};
+
+const popular = async (req, res) => {
+  try {
+    const popularBlogs = await Blog.find().limit(4).sort({ body: -1 });
+    res.status(200).json(popularBlogs);
+  } catch (error) {
+    console.log(chalk.magenta(`[popular] ${error.message}`));
+    res.status(400).json({ message: error.message });
+  }
+};
+
+const count = async (req, res) => {
+  try {
+    const travel = await Blog.find({ category: "Travel" }).count();
+    const politics = await Blog.find({ category: "Politics" }).count();
+    const fashion = await Blog.find({ category: "Fashion" }).count();
+    const beauty = await Blog.find({ category: "Beauty" }).count();
+    const lifestyle = await Blog.find({ category: "Lifestyle" }).count();
+    const games = await Blog.find({ category: "Games" }).count();
+
+    res.status(200).json([
+      {
+        category: "travel",
+        count: travel,
+      },
+      {
+        category: "politics",
+        count: politics,
+      },
+      {
+        category: "fashion",
+        count: fashion,
+      },
+      {
+        category: "beauty",
+        count: beauty,
+      },
+      {
+        category: "lifestyle",
+        count: lifestyle,
+      },
+      {
+        category: "games",
+        count: games,
+      },
+    ]);
+  } catch (error) {
+    console.log(chalk.magenta(`[count] ${error.message}`));
+    res.status(400).json({ message: error.message });
+  }
+};
+
 export {
   createBlog,
   userBlog,
@@ -142,7 +217,11 @@ export {
   travel,
   beauty,
   politics,
+  games,
   trending,
   feature,
   blogs,
+  editorsPick,
+  popular,
+  count,
 };

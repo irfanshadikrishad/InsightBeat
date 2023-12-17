@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import FooterBrowseBox from "./FooterBrowseBox";
 // ICONS
 import { FaTwitter } from "react-icons/fa";
@@ -6,24 +7,56 @@ import { FaLinkedinIn } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 
 export default function FooterSocial() {
+    const [count, setCount] = useState([]);
+
+    const GetCount = async () => {
+        const request = await fetch("http://localhost:3000/api/blog/count", {
+            method: "GET"
+        })
+        const response = await request.json();
+        if (request.status === 200) {
+            setCount(response);
+        }
+    }
+    useEffect(() => {
+        GetCount();
+    }, [])
     return <div>
         <div className="footer_header">
             <p>Follow Us</p>
             <h1>Social</h1>
             <div className="footer_social">
-                <a href="https://github.com/irfanshadikrishad" target="_blank" rel="noreferrer">{<FaTwitter />}</a>
-                <a href="https://github.com/irfanshadikrishad" target="_blank" rel="noreferrer">{<FaInstagram />}</a>
-                <a href="https://github.com/irfanshadikrishad" target="_blank" rel="noreferrer">{<FaLinkedinIn />}</a>
-                <a href="https://github.com/irfanshadikrishad" target="_blank" rel="noreferrer">{<FaGithub />}</a>
+                <a
+                    href="https://github.com/irfanshadikrishad"
+                    target="_blank"
+                    rel="noreferrer">{<FaTwitter />}
+                </a>
+                <a
+                    href="https://github.com/irfanshadikrishad"
+                    target="_blank"
+                    rel="noreferrer">{<FaInstagram />}
+                </a>
+                <a
+                    href="https://github.com/irfanshadikrishad"
+                    target="_blank"
+                    rel="noreferrer">{<FaLinkedinIn />}
+                </a>
+                <a
+                    href="https://github.com/irfanshadikrishad"
+                    target="_blank"
+                    rel="noreferrer">{<FaGithub />}
+                </a>
             </div>
         </div>
         <div>
             <h1>Browse</h1>
-            <FooterBrowseBox tag="Travel" />
-            <FooterBrowseBox tag="Politics" />
-            <FooterBrowseBox tag="Fashion" />
-            <FooterBrowseBox tag="Beauty" />
-            <FooterBrowseBox tag="Lifestyle" />
+            {count && count.map((co, i) => {
+                return <FooterBrowseBox
+                    key={i}
+                    category={co.category}
+                    count={co.count}
+                />
+            })}
         </div>
     </div>
 }
