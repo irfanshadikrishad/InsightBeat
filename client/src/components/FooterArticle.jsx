@@ -1,19 +1,20 @@
 import { NavLink } from "react-router-dom";
 import randomColor from "random-color";
 
-export default function FooterArticle() {
+// eslint-disable-next-line react/prop-types
+export default function FooterArticle({ category, title, author, date }) {
     const color = randomColor();
     return <>
         <article className="footer_article">
             <NavLink to="/" className="footer_cat" style={{ backgroundColor: color.hexString() }}>
-                travel
+                {category}
             </NavLink>
             <h1 className="footer_article_header">
-                Lorem ipsum dolor sit amet consectetur.
+                {title}
             </h1>
             <div className="footer_author">
-                <p>Mimiko Asashi
-                    <span className="footer_article_date">- October 28, 2023
+                <p>{author}
+                    <span className="footer_article_date">• {date}
                     </span>
                 </p>
             </div>

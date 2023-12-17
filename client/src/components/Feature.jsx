@@ -16,7 +16,6 @@ export default function Feature() {
             console.log(response);
         }
     }
-    console.log(feature);
     useEffect(() => {
         feat();
     }, [])
