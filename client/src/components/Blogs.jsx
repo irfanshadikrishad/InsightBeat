@@ -28,6 +28,7 @@ export default function Blogs() {
                     date={blo && String(blo.createdAt).slice(0, 10)}
                     title={String(blo.title).slice(0, 33) + "..."}
                     body={String(blo.body).slice(0, 150) + "..."}
+                    id={blo._id}
                 />
             })}
         </section>

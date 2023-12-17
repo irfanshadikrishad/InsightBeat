@@ -38,6 +38,7 @@ export default function Games() {
                         date={String(blog.createdAt).slice(0, 10)}
                         author={blog.author}
                         category={blog.category}
+                        id={blog._id}
                     />
                 }) : <p>No blogs found</p>}
             </div>

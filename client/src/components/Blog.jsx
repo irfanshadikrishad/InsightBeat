@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
-export default function Blog({ category, title, body, author, date }) {
+export default function Blog({ category, title, body, author, date, id }) {
     return <article className="blog">
         <NavLink to={`/${category}`} className="blog_cat">{category}</NavLink>
 
@@ -23,7 +23,7 @@ export default function Blog({ category, title, body, author, date }) {
         <div className="blog_footer">
             <hr />
             <div className="blog_continue">
-                <NavLink to="/">
+                <NavLink to={`/blog/${id}`}>
                     Continue Reading &gt;
                 </NavLink>
             </div>

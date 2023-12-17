@@ -209,6 +209,21 @@ const count = async (req, res) => {
   }
 };
 
+const singleBlog = async (req, res) => {
+  try {
+    const { id } = await req.body;
+    const blog = await Blog.findById(id);
+    if (blog) {
+      res.status(200).json(blog);
+    } else {
+      res.status(404).json({ message: "Not found!" });
+    }
+  } catch (error) {
+    console.log(chalk.magenta(`[singleBlog] ${error.message}`));
+    res.status(400).json({ message: error.message });
+  }
+};
+
 export {
   createBlog,
   userBlog,
@@ -224,4 +239,5 @@ export {
   editorsPick,
   popular,
   count,
+  singleBlog,
 };

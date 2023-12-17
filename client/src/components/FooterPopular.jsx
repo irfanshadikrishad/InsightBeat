@@ -31,6 +31,7 @@ export default function FooterPopular() {
                 title={String(pop.title).slice(0, 40) + "..."}
                 date={pop && String(pop.createdAt).slice(0, 10)}
                 author={pop.author}
+                id={pop._id}
             />
         })}
     </div>

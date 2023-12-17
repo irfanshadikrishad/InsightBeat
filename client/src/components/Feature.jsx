@@ -29,7 +29,7 @@ export default function Feature() {
                     <NavLink to={`/${feature.category}`} className="feature_cat">
                         {feature && feature.category}
                     </NavLink>
-                    <a href="" className="feature_title">
+                    <a className="feature_title">
                         <h1>{feature && String(feature.title).slice(0, 33) + "..."}</h1>
                     </a>
                 </div>
@@ -47,7 +47,7 @@ export default function Feature() {
                 <div className="feature_continue_main">
                     <hr />
                     <div className="feature_continue">
-                        <a href="/">Continue Reading &gt;</a>
+                        <a href={`/blog/${feature._id}`}>Continue Reading &gt;</a>
                     </div>
                 </div>
             </div>

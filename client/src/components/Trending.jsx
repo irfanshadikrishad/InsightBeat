@@ -28,6 +28,7 @@ export default function Trending() {
                     title={tren && tren.title.slice(0, 50) + "..."}
                     author={tren && tren.author}
                     date={tren && String(tren.createdAt).slice(0, 10)}
+                    id={tren && tren._id}
                 />
             })}
         </section>

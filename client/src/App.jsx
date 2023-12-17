@@ -13,6 +13,7 @@ import Travel from "./pages/Travel";
 import Beauty from "./pages/Beauty";
 import Politics from "./pages/Politics";
 import Games from "./pages/Games";
+import SingleBlog from "./pages/SingleBlog";
 
 export default function App() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
         <Route path="/beauty" element={<Beauty />} />
         <Route path="/politics" element={<Politics />} />
         <Route path="/games" element={<Games />} />
+        <Route path="/blog/:id" element={<SingleBlog />} />
         <Route path="*" element={<E404 />} />
       </Routes>
       <Footer />

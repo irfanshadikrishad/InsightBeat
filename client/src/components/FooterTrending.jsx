@@ -31,6 +31,7 @@ export default function FooterTrending() {
                 title={String(tren.title).slice(0, 40) + "..."}
                 author={tren.author}
                 date={String(tren.createdAt).slice(0, 10)}
+                id={tren._id}
             />
         })}
     </div>

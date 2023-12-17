@@ -31,6 +31,7 @@ export default function FooterHot() {
                 category={edit.category}
                 date={edit && String(edit.createdAt).slice(0, 10)}
                 author={edit.author}
+                id={edit._id}
             />
         })}
     </div>
