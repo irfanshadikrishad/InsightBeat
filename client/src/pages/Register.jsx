@@ -2,9 +2,11 @@ import { useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAuth } from "../store/auth.jsx";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
-    const { storeTokenInLS } = useAuth();
+    const { storeTokenInLS, setIsLoggedIn } = useAuth();
+    const navigate = useNavigate();
     const [register, setRegister] = useState({
         name: "",
         email: "",
@@ -39,6 +41,10 @@ export default function Register() {
         const response = await request.json();
         if (request.status === 201) {
             storeTokenInLS(response.token);
+            setIsLoggedIn(response.token);
+            navigate("/");
+        } else if (request.status === 412) {
+            errorToast(JSON.parse(response.message)[0].message)
         } else {
             errorToast(response.message);
         }
