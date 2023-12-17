@@ -29,7 +29,6 @@ const userBlog = async (req, res) => {
 const fashion = async (req, res) => {
   try {
     const fashionBlogs = await Blog.find({ category: "Fashion" });
-    console.log(fashionBlogs);
     if (fashionBlogs) {
       res.status(200).json(fashionBlogs);
     } else {
@@ -44,7 +43,6 @@ const fashion = async (req, res) => {
 const lifestyle = async (req, res) => {
   try {
     const lifestyleBlogs = await Blog.find({ category: "Lifestyle" });
-    console.log(lifestyleBlogs);
     if (lifestyleBlogs) {
       res.status(200).json(lifestyleBlogs);
     } else {
@@ -59,7 +57,6 @@ const lifestyle = async (req, res) => {
 const travel = async (req, res) => {
   try {
     const travelBlogs = await Blog.find({ category: "Travel" });
-    console.log(travelBlogs);
     if (travelBlogs) {
       res.status(200).json(travelBlogs);
     } else {
@@ -74,7 +71,6 @@ const travel = async (req, res) => {
 const beauty = async (req, res) => {
   try {
     const beautyBlogs = await Blog.find({ category: "Beauty" });
-    console.log(beautyBlogs);
     if (beautyBlogs) {
       res.status(200).json(beautyBlogs);
     } else {
@@ -89,7 +85,6 @@ const beauty = async (req, res) => {
 const politics = async (req, res) => {
   try {
     const politicsBlogs = await Blog.find({ category: "Politics" });
-    console.log(politicsBlogs);
     if (politicsBlogs) {
       res.status(200).json(politicsBlogs);
     } else {
@@ -129,6 +124,16 @@ const feature = async (req, res) => {
   }
 };
 
+const blogs = async (req, res) => {
+  try {
+    const blooogs = await Blog.find().limit(9);
+    res.status(200).json(blooogs);
+  } catch (error) {
+    console.log(chalk.magenta(`[blogs] ${error.message}`));
+    res.status(400).json({ message: error.message });
+  }
+};
+
 export {
   createBlog,
   userBlog,
@@ -139,4 +144,5 @@ export {
   politics,
   trending,
   feature,
+  blogs,
 };

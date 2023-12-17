@@ -9,6 +9,7 @@ import {
   politics,
   trending,
   feature,
+  blogs,
 } from "../controller/blog-controller.js";
 
 const router = Router();
@@ -24,5 +25,6 @@ router.route("/beauty").get(beauty);
 router.route("/politics").get(politics);
 router.route("/trending").get(trending);
 router.route("/feature").get(feature);
+router.route("/blogs").get(blogs);
 
 export default router;

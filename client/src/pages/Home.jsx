@@ -8,7 +8,7 @@ export default function Home() {
         <Feature />
         <Blogs />
         <div className="older_blogs">
-            <a href="/">Older Blogs &gt;</a>
+            <a>Older Blogs &gt;</a>
         </div>
     </section>
 }
