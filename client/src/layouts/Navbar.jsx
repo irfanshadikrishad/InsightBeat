@@ -7,9 +7,16 @@ import { FaInstagram } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 import { HiMiniBars3 } from "react-icons/hi2";
+import { HiBars3BottomRight } from "react-icons/hi2";
+import { useState } from "react";
 
 export default function Navbar() {
   const { isLoggedIn } = useAuth();
+  const [popper, setPopper] = useState(false);
+
+  const mobilePopper = () => {
+    setPopper((prev) => !prev);
+  }
   return (
     <nav>
       <div className="navbar_border">
@@ -26,14 +33,33 @@ export default function Navbar() {
           {isLoggedIn ? <div className="navbar_lr">
             <NavLink to="/profile" className="navbar_l">Profile</NavLink>
             <NavLink to="/logout" className="navbar_l">Logout</NavLink>
-          </div> : <div className="navbar_lr">
-            <NavLink className="navbar_l" to="/login">
-              Login
-            </NavLink>
-            <NavLink className="navbar_r" to="/register">
-              Become an Author
-            </NavLink>
-          </div>}
+          </div> : <>
+            <div className="navbar_lr">
+              <NavLink className="navbar_l" to="/login">
+                Login
+              </NavLink>
+              <NavLink className="navbar_r" to="/register">
+                Become an Author
+              </NavLink>
+            </div>
+          </>}
+          <div className="navbarMobile">
+            <button onClick={mobilePopper}>{<HiBars3BottomRight />}</button>
+            {popper && <div className="navbarMobileContent">
+              {isLoggedIn ? <div>
+                <NavLink to="/profile">Profile</NavLink>
+                <NavLink to="/logout">Logout</NavLink>
+              </div> : <>
+                <div className="navbar_lr">
+                  <NavLink to="/login">
+                    Login
+                  </NavLink>
+                  <NavLink to="/register">
+                    Become an Author
+                  </NavLink>
+                </div></>}
+            </div>}
+          </div>
         </div>
       </div>
       {/* breadcrumb */}

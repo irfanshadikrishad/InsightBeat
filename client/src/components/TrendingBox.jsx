@@ -7,7 +7,7 @@ export default function TrendingBox({ category, title, author, date, id }) {
     return <>
         <div className="trending_box">
             <NavLink to={`/${category}`} className="trending_cat" style={{ backgroundColor: color.hexString() }}>{category}</NavLink>
-            <a href={`/blog/${id}`}><h3>{title}</h3></a>
+            <a className="trendingTitle" href={`/blog/${id}`}><h3>{title}</h3></a>
             <div className="trending_timeline">
                 <p>by <a>{author}</a> • {date}</p>
             </div>

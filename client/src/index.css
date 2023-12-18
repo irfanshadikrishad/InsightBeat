@@ -675,8 +675,156 @@ span.footer_article_date {
   color: var(--color);
 }
 
-@media screen and (max-width: 980px) {
+.navbarMobile {
+  display: none;
+}
+
+.navbarMobile>button {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+}
+
+.navbarMobileContent {
+  position: absolute;
+  top: 70px;
+  padding: 10px;
+  background-color: var(--primary);
+  border-radius: 7px;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 200px;
+  z-index: 100;
+}
+
+.navbarMobileContent>div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.navbarMobileContent>div>a {
+  text-decoration: none;
+  color: var(--color);
+}
+
+@media screen and (max-width: 1440px) {
   .container {
-    width: 80%;
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .container {
+    width: 90%;
+  }
+
+  .footer {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .navbar_lr {
+    display: none;
+  }
+
+  .navbarMobile {
+    display: flex;
+    justify-content: end;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .trending_boxes {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .feature {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .blogs {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .individuals {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .navbar_breadcrumb {
+    display: none;
+  }
+
+  .feature_title,
+  .blog_title {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .register {
+    grid-template-columns: 1fr;
+  }
+
+  .register>div>img {
+    width: 50%;
+    transform: translateX(46%);
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .navbar_social {
+    display: none;
+  }
+
+  .navbar {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .navbar_title {
+    text-align: start;
+    font-size: 1.2rem;
+  }
+
+  .trending_boxes {
+    grid-template-columns: 1fr;
+  }
+
+  .trendingTitle {
+    font-size: 0.9rem;
+    /* font-weight: 200; */
+  }
+
+  .trending_boxes>a>h3 {
+    font-size: 0.9rem;
+  }
+
+  .blogs,
+  .footer,
+  .individuals {
+    grid-template-columns: 1fr;
+  }
+
+  .feature_title,
+  .blog_title,
+  .footer_article_header {
+    font-size: 1.1rem;
+  }
+
+  .feature_author {
+    padding: 5px 0;
+  }
+
+  .individual>h1,
+  .footer_header>h1,
+  .register>div>h1 {
+    font-size: 1.1rem;
+  }
+
+  .register_form>button {
+    width: 120px;
   }
 }
