@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
 
     const authenticate = async () => {
         try {
-            const request = await fetch("http://localhost:3000/api/auth/user", {
+            const request = await fetch("https://insightbeat.up.railway.app/api/auth/user", {
                 method: "GET",
                 headers: {
                     "Authorization": "Bearer " + token

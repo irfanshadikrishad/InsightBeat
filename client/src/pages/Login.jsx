@@ -29,7 +29,7 @@ export default function Login() {
     }
     const submit = async (e) => {
         e.preventDefault();
-        const request = await fetch("http://localhost:3000/api/auth/login", {
+        const request = await fetch("https://insightbeat.up.railway.app/api/auth/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

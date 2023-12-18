@@ -5,7 +5,7 @@ export default function Feature() {
     const [feature, setFeature] = useState({});
 
     const feat = async () => {
-        const request = await fetch("http://localhost:3000/api/blog/feature",
+        const request = await fetch("https://insightbeat.up.railway.app/api/blog/feature",
             {
                 method: "GET"
             })

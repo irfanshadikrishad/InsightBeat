@@ -10,7 +10,7 @@ export default function FooterSocial() {
     const [count, setCount] = useState([]);
 
     const GetCount = async () => {
-        const request = await fetch("http://localhost:3000/api/blog/count", {
+        const request = await fetch("https://insightbeat.up.railway.app/api/blog/count", {
             method: "GET"
         })
         const response = await request.json();

@@ -42,7 +42,7 @@ export default function CreateBlog() {
     }
     const submit = async (e) => {
         e.preventDefault();
-        const request = await fetch("http://localhost:3000/api/blog/create", {
+        const request = await fetch("https://insightbeat.up.railway.app/api/blog/create", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

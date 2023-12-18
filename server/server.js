@@ -18,6 +18,11 @@ app.use(
 app.use("/api/auth", authRouter);
 app.use("/api/blog", blogRouter);
 
+// SERVER Status
+app.route("/").get((req, res) => {
+  res.status(200).json({ status: 200 });
+});
+
 app.listen(process.env.PORT, async () => {
   await database();
   console.log(chalk.cyan(`[listen] ${process.env.PORT}`));

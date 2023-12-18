@@ -7,7 +7,7 @@ export default function SingleBlog() {
     const [notfound, setNotFound] = useState(false)
 
     const GetSingle = async () => {
-        const request = await fetch("http://localhost:3000/api/blog/single", {
+        const request = await fetch("https://insightbeat.up.railway.app/api/blog/single", {
             method: "POST",
             headers: {
                 Accept: "application/json",

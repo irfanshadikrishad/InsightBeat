@@ -31,7 +31,7 @@ export default function Register() {
     }
     const submit = async (e) => {
         e.preventDefault();
-        const request = await fetch("http://localhost:3000/api/auth/register", {
+        const request = await fetch("https://insightbeat.up.railway.app/api/auth/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

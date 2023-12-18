@@ -6,7 +6,7 @@ export default function Games() {
     const [noBlogs, setNoBlogs] = useState(false);
 
     const GetGames = async () => {
-        const request = await fetch("http://localhost:3000/api/blog/games", {
+        const request = await fetch("https://insightbeat.up.railway.app/api/blog/games", {
             method: "GET",
             headers: {
                 Accept: "application/json",

@@ -6,7 +6,7 @@ export default function Fashion() {
     const [noBlogs, setNoBlogs] = useState(false);
 
     const fashion = async () => {
-        const request = await fetch("http://localhost:3000/api/blog/beauty", {
+        const request = await fetch("https://insightbeat.up.railway.app/api/blog/beauty", {
             method: "GET",
             headers: {
                 Accept: "application/json",

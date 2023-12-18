@@ -5,7 +5,7 @@ export default function FooterPopular() {
     const [popular, setPopular] = useState([]);
 
     const GetPopular = async () => {
-        const request = await fetch("http://localhost:3000/api/blog/popular",
+        const request = await fetch("https://insightbeat.up.railway.app/api/blog/popular",
             {
                 method: "GET"
             })

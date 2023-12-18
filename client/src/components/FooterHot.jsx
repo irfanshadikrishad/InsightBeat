@@ -5,7 +5,7 @@ export default function FooterHot() {
     const [editorsPick, setEditorsPick] = useState([]);
 
     const GetEditorsPick = async () => {
-        const request = await fetch("http://localhost:3000/api/blog/editorspick",
+        const request = await fetch("https://insightbeat.up.railway.app/api/blog/editorspick",
             {
                 method: "GET"
             })
