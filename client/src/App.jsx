@@ -5,7 +5,7 @@ import Footer from "./layouts/Footer";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
-import E404 from "./pages/e404";
+import E404 from "./pages/E404";
 import Logout from "./pages/Logout";
 import Fashion from "./pages/Fashion";
 import Lifestyle from "./pages/Lifestyle";
