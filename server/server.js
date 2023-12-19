@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://insight-beat.vercel.app",
+    origin: ["https://insight-beat.vercel.app", "http://localhost:5173"],
     methods: "*",
   })
 );

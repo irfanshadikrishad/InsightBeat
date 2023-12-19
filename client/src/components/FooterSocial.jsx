@@ -49,7 +49,7 @@ export default function FooterSocial() {
             </div>
         </div>
         <div>
-            <h1>Browse</h1>
+            <h1 className="footerHeader">Browse</h1>
             {count && count.map((co, i) => {
                 return <FooterBrowseBox
                     key={i}

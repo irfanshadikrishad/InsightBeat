@@ -49,7 +49,8 @@ export const AuthProvider = ({ children }) => {
         deleteTokenInLS,
         setIsLoggedIn,
         user,
-        loading
+        loading,
+        token
     }}>
         {children}
     </AuthContext.Provider>

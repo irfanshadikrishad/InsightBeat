@@ -71,5 +71,39 @@ const user = async (req, res) => {
   }
 };
 
+const editUser = async (req, res) => {
+  try {
+    const { id, username, avatar, email, name } = await req.body;
+    console.log(id, username, avatar, email, name);
+    const update = await Author.findByIdAndUpdate(id, {
+      username,
+      avatar,
+      email,
+      name,
+    });
+    res.status(200).json({ message: "Profle updated" });
+  } catch (error) {
+    console.log(chalk.magenta(`[editUser] ${error.message}`));
+    res.status(401).json({ message: error.message });
+  }
+};
+
+const userInspect = async (req, res) => {
+  try {
+    const { author } = await req.body;
+    const au = await Author.findOne({ username: author }).select({
+      password: 0,
+    });
+    if (au) {
+      res.status(200).json(au);
+    } else {
+      res.status(404).json({ message: "Not found!" });
+    }
+  } catch (error) {
+    console.log(chalk.magenta(`[userInspect] ${error.message}`));
+    res.status(400).json({ message: error.message });
+  }
+};
+
 export default register;
-export { login, user };
+export { login, user, editUser, userInspect };

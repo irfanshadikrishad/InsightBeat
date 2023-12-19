@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Macondo&display=swap');
 
 :root {
   --color: #1b1b1b;
@@ -75,6 +76,7 @@ body {
 .navbar_title {
   font-size: 1.6rem;
   text-align: center;
+  font-family: 'Macondo', cursive;
 }
 
 .navbar_breadcrumb {
@@ -132,7 +134,7 @@ body {
   border-radius: 5px;
   font-size: 0.56rem;
   width: fit-content;
-  font-weight: 600;
+  font-weight: 400;
   text-transform: uppercase;
 }
 
@@ -157,6 +159,10 @@ body {
   color: var(--color);
   font-size: 2rem;
   line-height: 40px;
+}
+
+.featureTitle {
+  font-weight: 400;
 }
 
 .feature_cat {
@@ -224,6 +230,10 @@ body {
   padding-bottom: 20px;
 }
 
+.blogTitleLink {
+  text-decoration: none;
+}
+
 .blog {
   padding: 10px;
   background-color: var(--primary);
@@ -234,6 +244,7 @@ body {
   font-size: 1.5rem;
   color: var(--color);
   line-height: 27px;
+  font-weight: 400;
 }
 
 .author_desc {
@@ -251,7 +262,7 @@ body {
   padding: 1px 5px;
   border-radius: 7px;
   color: var(--color);
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .blog_body {
@@ -328,6 +339,12 @@ footer {
   font-size: 0.8rem;
 }
 
+.footer_header>h1,
+.footerHeader {
+  font-family: 'Macondo', cursive;
+  font-size: 1.5rem;
+}
+
 .footer_cat {
   font-size: 0.5rem;
   text-transform: uppercase;
@@ -340,16 +357,16 @@ footer {
 }
 
 .footer_article_header {
-  font-size: 1.125rem;
-  line-height: 18px;
+  font-size: 1rem;
   padding: 5px 0 10px 0;
+  font-weight: 400;
 }
 
 .footer_author {
   font-size: 0.75rem;
 }
 
-span.footer_article_date {
+.footer_article_date {
   opacity: 50%;
 }
 
@@ -379,6 +396,7 @@ span.footer_article_date {
 .footer_browse>a {
   text-decoration: none;
   color: var(--color);
+  font-weight: 400;
 }
 
 .footer_social {
@@ -407,6 +425,10 @@ span.footer_article_date {
 .copyright>p>a {
   text-decoration: none;
   color: var(--color);
+}
+
+.individual>h1 {
+  font-family: 'Macondo', cursive;
 }
 
 ::-webkit-scrollbar {
@@ -510,6 +532,12 @@ span.footer_article_date {
 
 .my_blogs {
   padding: 20px 0 5px 0;
+}
+
+.profileHeader {
+  font-family: 'Macondo', cursive;
+  font-weight: bold;
+  font-size: 1.3rem;
 }
 
 .profile_relatables {
@@ -709,6 +737,10 @@ span.footer_article_date {
 .navbarMobileContent>div>a {
   text-decoration: none;
   color: var(--color);
+}
+
+.trendingTitle>h3 {
+  font-weight: 400;
 }
 
 @media screen and (max-width: 1440px) {

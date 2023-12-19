@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom"
 
 export default function Feature() {
     const [feature, setFeature] = useState({});
+    const [writer, setWriter] = useState({});
 
     const feat = async () => {
         const request = await fetch("https://insightbeat.up.railway.app/api/blog/feature",
@@ -16,9 +17,27 @@ export default function Feature() {
             console.log(response);
         }
     }
+    const GetWriter = async () => {
+        if (feature) {
+            const request = await fetch("https://insightbeat.up.railway.app/api/auth/userinspect",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ author: feature.author })
+                })
+            const response = await request.json();
+            if (request.status === 200) {
+                setWriter(response)
+            }
+        }
+    }
     useEffect(() => {
         feat();
-    }, [])
+        GetWriter();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [feature])
     return <>
         <section className="feature">
             <img src={feature && feature.image}
@@ -29,13 +48,13 @@ export default function Feature() {
                     <NavLink to={`/${feature.category}`} className="feature_cat">
                         {feature && feature.category}
                     </NavLink>
-                    <a className="feature_title">
-                        <h1>{feature && String(feature.title).slice(0, 33) + "..."}</h1>
+                    <a href={`/blog/${feature._id}`} className="feature_title">
+                        <h1 className="featureTitle">{feature && String(feature.title).slice(0, 45) + "..."}</h1>
                     </a>
                 </div>
                 <div className="feature_author">
                     <img className="feature_author_avatar"
-                        src="https://i.pinimg.com/564x/ea/06/ff/ea06ff188085acfab02f046996afbe0e.jpg"
+                        src={writer ? writer.avatar : "https://i.pinimg.com/564x/ea/06/ff/ea06ff188085acfab02f046996afbe0e.jpg"}
                         alt="avatar" />
                     <div className="feature_auth">
                         <p><span className="dim_i">
@@ -45,10 +64,6 @@ export default function Feature() {
                 </div>
                 <p className="feature_desc">{feature && String(feature.body).slice(0, 100) + "..."}</p>
                 <div className="feature_continue_main">
-                    <hr />
-                    <div className="feature_continue">
-                        <a href={`/blog/${feature._id}`}>Continue Reading &gt;</a>
-                    </div>
                 </div>
             </div>
         </section>

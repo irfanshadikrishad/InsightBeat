@@ -65,7 +65,7 @@ export default function CreateBlog() {
     }
     return <section>
         <form onSubmit={submit} className="create_form">
-            <h1>&lt; Create a Blog &gt;</h1>
+            <h1 className="profileHeader">&lt; Create a Blog &gt;</h1>
             <input
                 onChange={handleInput}
                 value={create.title}
@@ -96,6 +96,7 @@ export default function CreateBlog() {
                     <option value="Games">Games</option>
                     <option value="Politics">Politics</option>
                     <option value="Lifestyle">Lifestyle</option>
+                    <option value="Technology">Technology</option>
                 </select>
             </div>
             <button type="submit">Create</button>

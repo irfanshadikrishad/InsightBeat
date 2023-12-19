@@ -224,6 +224,17 @@ const singleBlog = async (req, res) => {
   }
 };
 
+const personalBlogCount = async (req, res) => {
+  try {
+    const { author } = await req.body;
+    const count = await Blog.find({ author }).count();
+    res.status(200).json({ count });
+  } catch (error) {
+    console.log(chalk.magenta(`[personalBlogCount] ${error.message}`));
+    res.status(400).json({ message: error.message });
+  }
+};
+
 export {
   createBlog,
   userBlog,
@@ -240,4 +251,5 @@ export {
   popular,
   count,
   singleBlog,
+  personalBlogCount,
 };

@@ -30,12 +30,12 @@ export default function SingleBlog() {
     }, [])
     return <section className="container singleBlog">
         {!notfound ? <>
-            <img
-                src={single && single.image}
+            {single.image && <img
+                src={single.image}
                 alt="alt-img"
                 draggable="false"
                 className="singleBlogImage"
-            />
+            />}
             <h1 className="blogTitle">{single && single.title}</h1>
             <p className="singleBody">{single && single.body}</p>
             <div className="singleBlogAuthor">
@@ -52,6 +52,8 @@ export default function SingleBlog() {
                     <p>{single && String(single.createdAt).slice(0, 10)}</p>
                 </div>
             </div>
-        </> : <p>Not Found!</p>}
+        </> : <p>
+            The page does not exist or has been removed.
+        </p>}
     </section>
 }

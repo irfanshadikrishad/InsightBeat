@@ -30,7 +30,7 @@ export default function MyBlogs() {
         }
     }, [loading, user, username, setUsername, blogs, setBlogs])
     return <section>
-        <h1 className="my_blogs">&lt; My Blogs &gt;</h1>
+        <h1 className="my_blogs profileHeader">&lt; My Blogs &gt;</h1>
         <div className="blogs">
             {blogs && blogs.map((blog) => {
                 return <Blog
@@ -40,6 +40,8 @@ export default function MyBlogs() {
                     author={blog.author}
                     date={blog.createdAt && blog.createdAt.slice(0, 10)}
                     category={blog.category}
+                    id={blog._id}
+                    avatar={user.avatar}
                 />
             })}
         </div>
