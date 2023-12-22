@@ -16,6 +16,7 @@ import {
   count,
   singleBlog,
   personalBlogCount,
+  blogAuthor,
 } from "../controller/blog-controller.js";
 
 const router = Router();
@@ -38,5 +39,6 @@ router.route("/popular").get(popular);
 router.route("/count").get(count);
 router.route("/single").post(singleBlog);
 router.route("/personalblogcount").post(personalBlogCount);
+router.route("/blogauthor").post(blogAuthor);
 
 export default router;

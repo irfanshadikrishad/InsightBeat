@@ -7,7 +7,7 @@ export default function ProfileHeader() {
 
     const GetBlogs = async () => {
         if (user) {
-            const request = await fetch("https://insightbeat.up.railway.app/api/blog/personalblogcount",
+            const request = await fetch("https://insight-beat.vercel.app/api/blog/personalblogcount",
                 {
                     method: "POST",
                     headers: {

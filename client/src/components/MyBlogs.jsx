@@ -11,7 +11,7 @@ export default function MyBlogs() {
         if (!loading && user) {
             const bloog = async () => {
                 setUsername(user.username);
-                const request = await fetch("https://insightbeat.up.railway.app/api/blog/user",
+                const request = await fetch("https://insight-beat.vercel.app/api/blog/user",
                     {
                         method: "POST",
                         headers: {

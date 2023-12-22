@@ -5,7 +5,7 @@ export default function Blogs() {
     const [blogs, setBlogs] = useState([]);
 
     const blogFetch = async () => {
-        const request = await fetch("https://insightbeat.up.railway.app/api/blog/blogs", {
+        const request = await fetch("https://insight-beat.vercel.app/api/blog/blogs", {
             method: "GET"
         })
         const response = await request.json();

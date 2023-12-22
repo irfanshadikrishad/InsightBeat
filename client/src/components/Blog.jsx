@@ -1,7 +1,25 @@
+// import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 export default function Blog({ category, title, body, author, date, id, avatar }) {
+    // const [writer, setWriter] = useState({});
+
+    // const GetWriter = async () => {
+    //     const request = await fetch("http://localhost:3000/api/blog/blogauthor", {
+    //         method: "POST",
+    //         headers: {
+    //             Accept: "application/json",
+    //             "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify(author)
+    //     })
+    //     const response = await request.json();
+    //     console.log(response);
+    // }
+    // useEffect(() => {
+    //     GetWriter();
+    // }, [author])
     return <article className="blog">
         <NavLink to={`/${category}`} className="blog_cat">{category}</NavLink>
 

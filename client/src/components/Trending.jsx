@@ -5,7 +5,7 @@ export default function Trending() {
     const [trending, setTrending] = useState([]);
 
     const trend = async () => {
-        const request = await fetch("https://insightbeat.up.railway.app/api/blog/trending",
+        const request = await fetch("https://insight-beat.vercel.app/api/blog/trending",
             {
                 method: "GET"
             })

@@ -4,10 +4,11 @@ import { useParams } from "react-router-dom";
 export default function SingleBlog() {
     const { id } = useParams();
     const [single, setSingle] = useState({});
+    const [author, setAuthor] = useState({});
     const [notfound, setNotFound] = useState(false)
 
     const GetSingle = async () => {
-        const request = await fetch("https://insightbeat.up.railway.app/api/blog/single", {
+        const request = await fetch("https://insight-beat.vercel.app/api/blog/single", {
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -17,7 +18,8 @@ export default function SingleBlog() {
         })
         const response = await request.json();
         if (request.status === 200) {
-            setSingle(response);
+            setSingle(response.blog);
+            setAuthor(response.author);
         } else if (request.status === 404) {
             setNotFound(true)
         } else {
@@ -42,7 +44,7 @@ export default function SingleBlog() {
                 <div>
                     <img
                         className="authorImageSingleBlog"
-                        src="https://i.pinimg.com/564x/ea/06/ff/ea06ff188085acfab02f046996afbe0e.jpg"
+                        src={author ? author.avatar : "https://i.pinimg.com/564x/ea/06/ff/ea06ff188085acfab02f046996afbe0e.jpg"}
                         alt="author-image"
                         draggable="false"
                     />

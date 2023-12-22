@@ -1,5 +1,6 @@
 import chalk from "chalk";
 import Blog from "../models/blog-model.js";
+import Author from "../models/auth-model.js";
 
 const createBlog = async (req, res) => {
   try {
@@ -214,7 +215,10 @@ const singleBlog = async (req, res) => {
     const { id } = await req.body;
     const blog = await Blog.findById(id);
     if (blog) {
-      res.status(200).json(blog);
+      const author = await Author.findOne({ username: blog.author }).select({
+        password: 0,
+      });
+      res.status(200).json({ blog, author });
     } else {
       res.status(404).json({ message: "Not found!" });
     }
@@ -231,6 +235,19 @@ const personalBlogCount = async (req, res) => {
     res.status(200).json({ count });
   } catch (error) {
     console.log(chalk.magenta(`[personalBlogCount] ${error.message}`));
+    res.status(400).json({ message: error.message });
+  }
+};
+
+const blogAuthor = async (req, res) => {
+  try {
+    const { author } = await req.body;
+    const writer = await Author.findOne({ username: author }).select({
+      password: 0,
+    });
+    res.status(200).json(writer);
+  } catch (error) {
+    console.log(chalk.magenta(`[blogAuthor] ${error.message}`));
     res.status(400).json({ message: error.message });
   }
 };
@@ -252,4 +269,5 @@ export {
   count,
   singleBlog,
   personalBlogCount,
+  blogAuthor,
 };

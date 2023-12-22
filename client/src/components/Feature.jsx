@@ -39,7 +39,7 @@ export default function Feature() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [feature])
     return <>
-        <section className="feature">
+        {feature && <section className="feature">
             <img src={feature && feature.image}
                 alt="travel"
                 className="feature_img" />
@@ -49,7 +49,7 @@ export default function Feature() {
                         {feature && feature.category}
                     </NavLink>
                     <a href={`/blog/${feature._id}`} className="feature_title">
-                        <h1 className="featureTitle">{feature && String(feature.title).slice(0, 45) + "..."}</h1>
+                        {feature && <h1 className="featureTitle">{String(feature.title).slice(0, 45) + "..."}</h1>}
                     </a>
                 </div>
                 <div className="feature_author">
@@ -66,6 +66,6 @@ export default function Feature() {
                 <div className="feature_continue_main">
                 </div>
             </div>
-        </section>
+        </section>}
     </>
 }
