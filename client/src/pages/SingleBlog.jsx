@@ -5,10 +5,10 @@ export default function SingleBlog() {
     const { id } = useParams();
     const [single, setSingle] = useState({});
     const [author, setAuthor] = useState({});
-    const [notfound, setNotFound] = useState(false)
+    const [notfound, setNotFound] = useState(false);
 
     const GetSingle = async () => {
-        const request = await fetch("https://insight-beat.vercel.app/api/blog/single", {
+        const request = await fetch("https://insightbeat.up.railway.app/api/blog/single", {
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -17,6 +17,7 @@ export default function SingleBlog() {
             body: JSON.stringify({ id: id })
         })
         const response = await request.json();
+        console.log(response);
         if (request.status === 200) {
             setSingle(response.blog);
             setAuthor(response.author);

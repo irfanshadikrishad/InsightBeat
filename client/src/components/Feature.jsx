@@ -29,20 +29,21 @@ export default function Feature() {
                 })
             const response = await request.json();
             if (request.status === 200) {
-                setWriter(response)
+                setWriter(response);
             }
         }
     }
+
     useEffect(() => {
         feat();
         GetWriter();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [feature])
+    }, [setFeature, writer])
     return <>
         {feature && <section className="feature">
             <img src={feature && feature.image}
                 alt="travel"
-                className="feature_img" />
+                className="feature_img"
+                draggable="false" />
             <div className="feature_right">
                 <div>
                     <NavLink to={`/${feature.category}`} className="feature_cat">
@@ -54,7 +55,7 @@ export default function Feature() {
                 </div>
                 <div className="feature_author">
                     <img className="feature_author_avatar"
-                        src={writer ? writer.avatar : "https://i.pinimg.com/564x/ea/06/ff/ea06ff188085acfab02f046996afbe0e.jpg"}
+                        src={writer.avatar ? writer.avatar : "https://i.pinimg.com/564x/ea/06/ff/ea06ff188085acfab02f046996afbe0e.jpg"}
                         alt="avatar" />
                     <div className="feature_auth">
                         <p><span className="dim_i">
