@@ -797,6 +797,14 @@ footer {
 }
 
 @media screen and (max-width: 500px) {
+  .featureTitle {
+    line-height: 30px;
+  }
+
+  .footer {
+    grid-template-columns: 1fr;
+  }
+
   .register {
     grid-template-columns: 1fr;
   }

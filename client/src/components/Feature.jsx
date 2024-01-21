@@ -39,11 +39,11 @@ export default function Feature() {
         GetWriter();
     }, [setFeature, writer])
     return <>
-        {feature && <section className="feature">
-            <img src={feature && feature.image}
+        {feature.image && <section className="feature">
+            {feature.image && <img src={feature.image}
                 alt="travel"
                 className="feature_img"
-                draggable="false" />
+                draggable="false" />}
             <div className="feature_right">
                 <div>
                     <NavLink to={`/${feature.category}`} className="feature_cat">
