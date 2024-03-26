@@ -4,19 +4,22 @@ import FooterTrending from "../components/FooterTrending";
 import FooterSocial from "../components/FooterSocial";
 
 export default function Footer() {
-    return <footer>
-        <section className="container footer">
-            <FooterPopular />
-            <FooterHot />
-            <FooterTrending />
-            <FooterSocial />
-        </section>
-        <section className="copyright container">
-            <p>All right reserved © &nbsp;
-                <a href="https://github.com/irfanshadikrishad">
-                    Irfan Shadik Rishad
-                </a>
-            </p>
-        </section>
+  return (
+    <footer>
+      <section className="container footer">
+        <FooterPopular />
+        <FooterHot />
+        <FooterTrending />
+        <FooterSocial />
+      </section>
+      <section className="copyright container">
+        <p>
+          All right reserved © &nbsp;
+          <a href="https://youtube.com/@irfanshadikrishad" target="_blank">
+            Irfan Shadik Rishad
+          </a>
+        </p>
+      </section>
     </footer>
+  );
 }

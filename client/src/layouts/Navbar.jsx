@@ -16,49 +16,84 @@ export default function Navbar() {
 
   const mobilePopper = () => {
     setPopper((prev) => !prev);
-  }
+  };
   return (
     <nav>
       <div className="navbar_border">
         <div className="container navbar">
           <div className="navbar_social">
-            <a target="_blank" href="https://github.com/irfanshadikrishad" rel="noreferrer">{<FaTwitter />}</a>
-            <a target="_blank" href="https://github.com/irfanshadikrishad" rel="noreferrer">{<FaFacebookF />}</a>
-            <a target="_blank" href="https://github.com/irfanshadikrishad" rel="noreferrer">{<FaInstagram />}</a>
-            <a target="_blank" href="https://github.com/irfanshadikrishad" rel="noreferrer">{<FaGithub />}</a>
+            <a
+              target="_blank"
+              href="https://github.com/irfanshadikrishad"
+              rel="noreferrer"
+            >
+              {<FaTwitter />}
+            </a>
+            <a
+              target="_blank"
+              href="https://github.com/irfanshadikrishad"
+              rel="noreferrer"
+            >
+              {<FaFacebookF />}
+            </a>
+            <a
+              target="_blank"
+              href="https://github.com/irfanshadikrishad"
+              rel="noreferrer"
+            >
+              {<FaInstagram />}
+            </a>
+            <a
+              target="_blank"
+              href="https://github.com/irfanshadikrishad"
+              rel="noreferrer"
+            >
+              {<FaGithub />}
+            </a>
           </div>
           <NavLink to="/">
             <h1 className="navbar_title">InsightBeat</h1>
           </NavLink>
-          {isLoggedIn ? <div className="navbar_lr">
-            <NavLink to="/profile" className="navbar_l">Profile</NavLink>
-            <NavLink to="/logout" className="navbar_l">Logout</NavLink>
-          </div> : <>
+          {isLoggedIn ? (
             <div className="navbar_lr">
-              <NavLink className="navbar_l" to="/login">
-                Login
+              <NavLink to="/profile" className="navbar_l">
+                Profile
               </NavLink>
-              <NavLink className="navbar_r" to="/register">
-                Become an Author
+              <NavLink to="/logout" className="navbar_l">
+                Logout
               </NavLink>
             </div>
-          </>}
+          ) : (
+            <>
+              <div className="navbar_lr">
+                <NavLink className="navbar_l" to="/login">
+                  Login
+                </NavLink>
+                <NavLink className="navbar_r" to="/register">
+                  Become an Author
+                </NavLink>
+              </div>
+            </>
+          )}
           <div className="navbarMobile">
             <button onClick={mobilePopper}>{<HiBars3BottomRight />}</button>
-            {popper && <div className="navbarMobileContent">
-              {isLoggedIn ? <div>
-                <NavLink to="/profile">Profile</NavLink>
-                <NavLink to="/logout">Logout</NavLink>
-              </div> : <>
-                <div className="navbar_lr">
-                  <NavLink to="/login">
-                    Login
-                  </NavLink>
-                  <NavLink to="/register">
-                    Become an Author
-                  </NavLink>
-                </div></>}
-            </div>}
+            {popper && (
+              <div className="navbarMobileContent">
+                {isLoggedIn ? (
+                  <div>
+                    <NavLink to="/profile">Profile</NavLink>
+                    <NavLink to="/logout">Logout</NavLink>
+                  </div>
+                ) : (
+                  <>
+                    <div className="navbar_lr">
+                      <NavLink to="/login">Login</NavLink>
+                      <NavLink to="/register">Become an Author</NavLink>
+                    </div>
+                  </>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>
