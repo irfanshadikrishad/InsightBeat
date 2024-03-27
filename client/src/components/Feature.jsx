@@ -5,7 +5,6 @@ import { useAuth } from "../store/auth";
 export default function Feature() {
   const { SERVER_URI, defaultAvatar } = useAuth();
   const [feature, setFeature] = useState({});
-  const [writer, setWriter] = useState({});
 
   const feat = async () => {
     const request = await fetch(`${SERVER_URI}/api/blog/feature`, {
@@ -18,29 +17,13 @@ export default function Feature() {
       console.log(response);
     }
   };
-  const GetWriter = async () => {
-    if (feature) {
-      const request = await fetch(`${SERVER_URI}/api/auth/userinspect`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ author: feature.author }),
-      });
-      const response = await request.json();
-      if (request.status === 200) {
-        setWriter(response);
-      }
-    }
-  };
 
   useEffect(() => {
     feat();
-    GetWriter();
-  }, [setFeature, writer]);
+  }, [setFeature]);
   return (
     <>
-      {feature.image && (
+      {feature && (
         <section className="feature">
           {feature.image && (
             <img
@@ -66,13 +49,17 @@ export default function Feature() {
             <div className="feature_author">
               <img
                 className="feature_author_avatar"
-                src={writer.avatar ? writer.avatar : defaultAvatar}
+                src={
+                  feature.author && feature.author.avatar
+                    ? feature.author.avatar
+                    : defaultAvatar
+                }
                 alt="avatar"
               />
               <div className="feature_auth">
                 <p>
                   <span className="dim_i">by </span>
-                  <a>{feature && feature.author}</a>
+                  <a>{feature.author && feature.author.name}</a>
                 </p>
                 <p className="feature_date">
                   {feature && String(feature.createdAt).slice(0, 10)}

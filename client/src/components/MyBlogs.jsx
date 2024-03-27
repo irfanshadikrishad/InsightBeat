@@ -17,17 +17,19 @@ export default function MyBlogs() {
             Accept: "application/json",
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ username }),
+          body: JSON.stringify({ id: user._id }),
         });
-        // eslint-disable-next-line no-unused-vars
         const response = await request.json();
+
         if (request.status === 200) {
           setBlogs(response);
+        } else {
+          console.log(response);
         }
       };
       bloog();
     }
-  }, [loading, user, username, setUsername, blogs, setBlogs]);
+  }, [loading, user, username, setUsername, setBlogs]);
   return (
     <section>
       <h1 className="my_blogs profileHeader">&lt; My Blogs &gt;</h1>
@@ -43,7 +45,7 @@ export default function MyBlogs() {
                 date={blog.createdAt && blog.createdAt.slice(0, 10)}
                 category={blog.category}
                 id={blog._id}
-                avatar={user.avatar}
+                avatar={blog.author && blog.author.avatar}
               />
             );
           })}

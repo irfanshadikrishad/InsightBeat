@@ -13,9 +13,10 @@ export default function ProfileHeader() {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ author: user.username }),
+        body: JSON.stringify({ id: user._id }),
       });
       const response = await request.json();
+
       if (request.status === 200) {
         setBlogs(response);
       } else {
@@ -25,7 +26,6 @@ export default function ProfileHeader() {
   };
   useEffect(() => {
     GetBlogs();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
   return (
     <section className="profile">

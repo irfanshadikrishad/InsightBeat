@@ -1,15 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../store/auth";
 
-export default function Blog({
-  category,
-  title,
-  body,
-  author,
-  date,
-  id,
-  avatar,
-}) {
+export default function Blog({ category, title, body, author, date, id }) {
   const { defaultAvatar } = useAuth();
 
   return (
@@ -25,13 +17,13 @@ export default function Blog({
       <div className="author_desc">
         <img
           className="feature_author_avatar"
-          src={avatar ? avatar : defaultAvatar}
+          src={author.avatar ? author.avatar : defaultAvatar}
           alt="avatar"
         />
         <div>
           <p>
             <span className="dim_i">by </span>
-            <a>{author}</a>
+            <a>{author.name && author.name}</a>
           </p>
           <p className="feature_date">{date}</p>
         </div>

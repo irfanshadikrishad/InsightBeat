@@ -10,7 +10,7 @@ export default function CreateBlog() {
     body: "",
     image: "",
     category: "Travel",
-    author: user && user.username,
+    author: user && user._id,
   });
   const handleInput = (e) => {
     const { value, name } = e.target;

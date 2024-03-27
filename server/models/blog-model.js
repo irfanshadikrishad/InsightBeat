@@ -18,8 +18,8 @@ const createSchema = new Schema(
       type: String,
     },
     author: {
-      type: String,
-      required: true,
+      type: Schema.Types.ObjectId,
+      ref: "Author",
     },
   },
   { timestamps: true }

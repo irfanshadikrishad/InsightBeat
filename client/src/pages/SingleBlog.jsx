@@ -6,8 +6,6 @@ export default function SingleBlog() {
   const { SERVER_URI, defaultAvatar } = useAuth();
   const { id } = useParams();
   const [single, setSingle] = useState({});
-  const [author, setAuthor] = useState({});
-  const [notfound, setNotFound] = useState(false);
 
   const GetSingle = async () => {
     const request = await fetch(`${SERVER_URI}/api/blog/single`, {
@@ -21,10 +19,7 @@ export default function SingleBlog() {
     const response = await request.json();
 
     if (request.status === 200) {
-      setSingle(response.blog);
-      setAuthor(response.author);
-    } else if (request.status === 404) {
-      setNotFound(true);
+      setSingle(response);
     } else {
       console.log(response.message);
     }
@@ -34,37 +29,35 @@ export default function SingleBlog() {
   }, []);
   return (
     <section className="container singleBlog">
-      {!notfound ? (
-        <>
-          {single.image && (
+      {single && single.image && (
+        <img
+          src={single.image}
+          alt="alt-img"
+          draggable="false"
+          className="singleBlogImage"
+        />
+      )}
+      <h1 className="blogTitle">{single && single.title}</h1>
+      <p className="singleBody">{single && single.body}</p>
+      {single && (
+        <div className="singleBlogAuthor">
+          <div>
             <img
-              src={single.image}
-              alt="alt-img"
+              className="authorImageSingleBlog"
+              src={
+                single.author && single.author.avatar
+                  ? single.author.avatar
+                  : defaultAvatar
+              }
+              alt="author-image"
               draggable="false"
-              className="singleBlogImage"
             />
-          )}
-          <h1 className="blogTitle">{single && single.title}</h1>
-          <p className="singleBody">{single && single.body}</p>
-          {author.name && (
-            <div className="singleBlogAuthor">
-              <div>
-                <img
-                  className="authorImageSingleBlog"
-                  src={author.avatar ? author.avatar : defaultAvatar}
-                  alt="author-image"
-                  draggable="false"
-                />
-              </div>
-              <div>
-                <p>{single && single.author}</p>
-                <p>{single && String(single.createdAt).slice(0, 10)}</p>
-              </div>
-            </div>
-          )}
-        </>
-      ) : (
-        <p>The page does not exist or has been removed.</p>
+          </div>
+          <div>
+            <p>{single.author && single.author.name}</p>
+            <p>{single && String(single.createdAt).slice(0, 10)}</p>
+          </div>
+        </div>
       )}
     </section>
   );

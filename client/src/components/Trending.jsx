@@ -21,22 +21,20 @@ export default function Trending() {
     trend();
   }, []);
   return (
-    <>
-      <section className="trending_boxes">
-        {trending &&
-          trending.map((tren) => {
-            return (
-              <TrendingBox
-                key={tren && tren._id}
-                category={tren && tren.category}
-                title={tren && tren.title.slice(0, 50) + "..."}
-                author={tren && tren.author}
-                date={tren && String(tren.createdAt).slice(0, 10)}
-                id={tren && tren._id}
-              />
-            );
-          })}
-      </section>
-    </>
+    <section className="trending_boxes">
+      {trending &&
+        trending.map((tren) => {
+          return (
+            <TrendingBox
+              key={tren && tren._id}
+              category={tren && tren.category}
+              title={tren && tren.title.slice(0, 50) + "..."}
+              author={tren && tren.author}
+              date={tren && String(tren.createdAt).slice(0, 10)}
+              id={tren && tren._id}
+            />
+          );
+        })}
+    </section>
   );
 }

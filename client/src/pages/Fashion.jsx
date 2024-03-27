@@ -37,7 +37,7 @@ export default function Fashion() {
                 title={blog.title.slice(0, 45) + "..."}
                 body={blog.body.slice(0, 150) + "..."}
                 date={String(blog.createdAt).slice(0, 10)}
-                author={blog.author}
+                author={blog.author.name}
                 category={blog.category}
                 id={blog._id}
               />

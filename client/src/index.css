@@ -4,9 +4,9 @@
 :root {
   --color: #1b1b1b;
   --background: whitesmoke;
-  --primary: white;
+  --primary: #efefef;
   --secondary: #92e3a9;
-  --footer-l: #f7f8fa;
+  --footer-l: #efefef;
 }
 
 * {

@@ -15,13 +15,12 @@ const createBlog = async (req, res) => {
   }
 };
 
+// Specific users blog
 const userBlog = async (req, res) => {
   try {
-    const { username } = await req.body;
-    if (username) {
-      const userBlogs = await Blog.find({ author: username });
-      res.status(200).json(userBlogs);
-    }
+    const { id } = await req.body;
+    const blogs = await Blog.find({ author: id }).populate("author");
+    res.status(200).json(blogs);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
@@ -29,7 +28,9 @@ const userBlog = async (req, res) => {
 
 const fashion = async (req, res) => {
   try {
-    const fashionBlogs = await Blog.find({ category: "Fashion" });
+    const fashionBlogs = await Blog.find({ category: "Fashion" }).populate(
+      "author"
+    );
     if (fashionBlogs) {
       res.status(200).json(fashionBlogs);
     } else {
@@ -43,7 +44,9 @@ const fashion = async (req, res) => {
 
 const lifestyle = async (req, res) => {
   try {
-    const lifestyleBlogs = await Blog.find({ category: "Lifestyle" });
+    const lifestyleBlogs = await Blog.find({ category: "Lifestyle" }).populate(
+      "author"
+    );
     if (lifestyleBlogs) {
       res.status(200).json(lifestyleBlogs);
     } else {
@@ -57,7 +60,9 @@ const lifestyle = async (req, res) => {
 
 const travel = async (req, res) => {
   try {
-    const travelBlogs = await Blog.find({ category: "Travel" });
+    const travelBlogs = await Blog.find({ category: "Travel" }).populate(
+      "author"
+    );
     if (travelBlogs) {
       res.status(200).json(travelBlogs);
     } else {
@@ -71,7 +76,9 @@ const travel = async (req, res) => {
 
 const beauty = async (req, res) => {
   try {
-    const beautyBlogs = await Blog.find({ category: "Beauty" });
+    const beautyBlogs = await Blog.find({ category: "Beauty" }).populate(
+      "author"
+    );
     if (beautyBlogs) {
       res.status(200).json(beautyBlogs);
     } else {
@@ -85,7 +92,9 @@ const beauty = async (req, res) => {
 
 const politics = async (req, res) => {
   try {
-    const politicsBlogs = await Blog.find({ category: "Politics" });
+    const politicsBlogs = await Blog.find({ category: "Politics" }).populate(
+      "author"
+    );
     if (politicsBlogs) {
       res.status(200).json(politicsBlogs);
     } else {
@@ -113,7 +122,7 @@ const games = async (req, res) => {
 
 const trending = async (req, res) => {
   try {
-    const trending = await Blog.find().limit(4);
+    const trending = await Blog.find().limit(4).populate("author");
     if (trending) {
       res.status(200).json(trending);
     } else {
@@ -127,7 +136,7 @@ const trending = async (req, res) => {
 
 const feature = async (req, res) => {
   try {
-    const featureBlogs = await Blog.findOne();
+    const featureBlogs = await Blog.findOne().populate("author");
     if (featureBlogs) {
       res.status(200).json(featureBlogs);
     } else {
@@ -141,7 +150,7 @@ const feature = async (req, res) => {
 
 const blogs = async (req, res) => {
   try {
-    const blooogs = await Blog.find().limit(9);
+    const blooogs = await Blog.find().limit(9).populate("author");
     res.status(200).json(blooogs);
   } catch (error) {
     console.log(chalk.magenta(`[blogs] ${error.message}`));
@@ -151,7 +160,10 @@ const blogs = async (req, res) => {
 
 const editorsPick = async (req, res) => {
   try {
-    const editorsPickBlogs = await Blog.find().limit(4).sort({ title: -1 });
+    const editorsPickBlogs = await Blog.find()
+      .limit(4)
+      .sort({ title: -1 })
+      .populate("author");
     res.status(200).json(editorsPickBlogs);
   } catch (error) {
     console.log(chalk.magenta(`[editorsPick] ${error.message}`));
@@ -161,7 +173,10 @@ const editorsPick = async (req, res) => {
 
 const popular = async (req, res) => {
   try {
-    const popularBlogs = await Blog.find().limit(4).sort({ body: -1 });
+    const popularBlogs = await Blog.find()
+      .limit(4)
+      .sort({ body: -1 })
+      .populate("author");
     res.status(200).json(popularBlogs);
   } catch (error) {
     console.log(chalk.magenta(`[popular] ${error.message}`));
@@ -213,12 +228,9 @@ const count = async (req, res) => {
 const singleBlog = async (req, res) => {
   try {
     const { id } = await req.body;
-    const blog = await Blog.findById(id);
+    const blog = await Blog.findById(id).populate("author");
     if (blog) {
-      const author = await Author.findOne({ username: blog.author }).select({
-        password: 0,
-      });
-      res.status(200).json({ blog, author });
+      res.status(200).json(blog);
     } else {
       res.status(404).json({ message: "Not found!" });
     }
@@ -230,9 +242,9 @@ const singleBlog = async (req, res) => {
 
 const personalBlogCount = async (req, res) => {
   try {
-    const { author } = await req.body;
-    const count = await Blog.find({ author }).count();
-    res.status(200).json({ count });
+    const { id } = await req.body;
+    const count = await Blog.find({ author: id });
+    res.status(200).json({ count: count.length });
   } catch (error) {
     console.log(chalk.magenta(`[personalBlogCount] ${error.message}`));
     res.status(400).json({ message: error.message });

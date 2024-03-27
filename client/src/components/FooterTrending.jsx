@@ -17,6 +17,7 @@ export default function FooterTrending() {
       console.log(response.message);
     }
   };
+
   useEffect(() => {
     trend();
   }, []);

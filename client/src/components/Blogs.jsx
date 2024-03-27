@@ -21,23 +21,21 @@ export default function Blogs() {
     blogFetch();
   }, []);
   return (
-    <>
-      <section className="blogs">
-        {blogs &&
-          blogs.map((blo) => {
-            return (
-              <Blog
-                key={blo._id}
-                category={blo.category}
-                author={blo.author}
-                date={blo && String(blo.createdAt).slice(0, 10)}
-                title={String(blo.title).slice(0, 33) + "..."}
-                body={String(blo.body).slice(0, 150) + "..."}
-                id={blo._id}
-              />
-            );
-          })}
-      </section>
-    </>
+    <section className="blogs">
+      {blogs &&
+        blogs.map((blo) => {
+          return (
+            <Blog
+              key={blo._id}
+              category={blo.category}
+              author={blo.author}
+              date={blo && String(blo.createdAt).slice(0, 10)}
+              title={String(blo.title).slice(0, 33) + "..."}
+              body={String(blo.body).slice(0, 150) + "..."}
+              id={blo._id}
+            />
+          );
+        })}
+    </section>
   );
 }
