@@ -8,9 +8,6 @@ export default function Home() {
       <Trending />
       <Feature />
       <Blogs />
-      <div className="older_blogs">
-        <a>Older Blogs &gt;</a>
-      </div>
     </section>
   );
 }

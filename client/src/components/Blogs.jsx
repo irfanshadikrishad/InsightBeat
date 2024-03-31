@@ -1,16 +1,23 @@
 import { useEffect, useState } from "react";
 import Blog from "./Blog";
+import { HiMiniArrowUturnLeft } from "react-icons/hi2";
 import { useAuth } from "../store/auth";
 
 export default function Blogs() {
   const { SERVER_URI } = useAuth();
   const [blogs, setBlogs] = useState([]);
+  const [limit, setLimit] = useState(6);
 
-  const blogFetch = async () => {
+  const blogFetch = async (blog_limit) => {
     const request = await fetch(`${SERVER_URI}/api/blog/blogs`, {
-      method: "GET",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ blog_limit: limit }),
     });
     const response = await request.json();
+
     if (request.status === 200) {
       setBlogs(response);
     } else {
@@ -18,24 +25,35 @@ export default function Blogs() {
     }
   };
   useEffect(() => {
-    blogFetch();
-  }, []);
+    blogFetch(limit);
+  }, [limit]);
   return (
-    <section className="blogs">
-      {blogs &&
-        blogs.map((blo) => {
-          return (
-            <Blog
-              key={blo._id}
-              category={blo.category}
-              author={blo.author}
-              date={blo && String(blo.createdAt).slice(0, 10)}
-              title={String(blo.title).slice(0, 33) + "..."}
-              body={String(blo.body).slice(0, 150) + "..."}
-              id={blo._id}
-            />
-          );
-        })}
+    <section>
+      <section className="blogs">
+        {blogs &&
+          blogs.map((singleBlog) => {
+            return (
+              <Blog
+                key={singleBlog._id}
+                category={singleBlog.category}
+                author={singleBlog.author}
+                date={singleBlog && String(singleBlog.createdAt).slice(0, 10)}
+                title={String(singleBlog.title).slice(0, 33) + "..."}
+                body={String(singleBlog.body).slice(0, 150) + "..."}
+                id={singleBlog._id}
+              />
+            );
+          })}
+      </section>
+      <div className="older_blogs">
+        <button
+          onClick={() => {
+            setLimit((prev) => prev + 6);
+          }}
+        >
+          Older Blogs {<HiMiniArrowUturnLeft />}
+        </button>
+      </div>
     </section>
   );
 }

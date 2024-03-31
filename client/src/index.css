@@ -303,19 +303,38 @@ body {
   justify-content: center;
 }
 
-.older_blogs > a {
+.older_blogs > button {
   text-decoration: none;
   background-color: var(--color);
   color: var(--background);
-  padding: 5px 20px;
+  padding: 10px 20px;
   border-radius: 25px;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
 }
 
 .trending_timeline {
   font-size: 0.9rem;
   opacity: 50%;
 }
-
+.author_name_single_blog {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.author_follow {
+  font-size: 1.3rem;
+  border: none;
+  display: flex;
+  color: var(--color);
+  background-color: var(--secondary);
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+}
 footer {
   background-color: var(--footer-l);
   padding: 30px 0 40px 0;
@@ -602,6 +621,7 @@ footer {
   border-radius: 7px;
   outline: none;
   cursor: pointer;
+  background-color: var(--primary);
 }
 
 .edit_profile {

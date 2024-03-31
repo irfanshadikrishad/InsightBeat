@@ -2,6 +2,7 @@ import chalk from "chalk";
 import Author from "../models/auth-model.js";
 import pkg from "bcryptjs";
 import { config } from "dotenv";
+import Blog from "../models/blog-model.js";
 
 config();
 const { genSalt, hash, compare } = pkg;
@@ -65,7 +66,18 @@ const login = async (req, res) => {
 const user = async (req, res) => {
   try {
     const user = await req.user;
-    res.status(200).json(user);
+    const userBlogs = await Blog.find({ author: user._id }).populate("author");
+    const modifiedUser = {
+      _id: user._id,
+      name: user.name,
+      username: user.username,
+      email: user.email,
+      avatar: user.avatar,
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt,
+      blogs: userBlogs,
+    };
+    res.status(200).json(modifiedUser);
   } catch (error) {
     res.status(401).json({ message: error.message });
   }
@@ -88,22 +100,5 @@ const editUser = async (req, res) => {
   }
 };
 
-const userInspect = async (req, res) => {
-  try {
-    const { author } = await req.body;
-    const au = await Author.findOne({ username: author }).select({
-      password: 0,
-    });
-    if (au) {
-      res.status(200).json(au);
-    } else {
-      res.status(404).json({ message: "Not found!" });
-    }
-  } catch (error) {
-    console.log(chalk.magenta(`[userInspect] ${error.message}`));
-    res.status(400).json({ message: error.message });
-  }
-};
-
 export default register;
-export { login, user, editUser, userInspect };
+export { login, user, editUser };

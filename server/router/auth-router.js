@@ -5,7 +5,6 @@ import register, {
   login,
   user,
   editUser,
-  userInspect,
 } from "../controller/auth-controller.js";
 import authMiddleware from "../middleware/auth-middleware.js";
 
@@ -16,6 +15,5 @@ router.route("/login").post(validate(loginSchema), login);
 
 router.route("/user").get(authMiddleware, user);
 router.route("/edit").patch(authMiddleware, editUser);
-router.route("/userinspect").post(userInspect);
 
 export default router;

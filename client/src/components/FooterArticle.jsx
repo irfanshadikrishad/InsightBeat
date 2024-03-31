@@ -11,14 +11,14 @@ export default function FooterArticle({ category, title, author, date, id }) {
         className="footer_cat"
         style={{ backgroundColor: color.hexString() }}
       >
-        {category}
+        {category && category}
       </NavLink>
       <a href={`/blog/${id}`}>
         <h1 className="footer_article_header">{title}</h1>
       </a>
       <div className="footer_author">
         <p>
-          {author.name}
+          {author && author.name}
           <span className="footer_article_date">• {date}</span>
         </p>
       </div>

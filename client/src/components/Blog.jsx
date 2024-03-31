@@ -17,13 +17,13 @@ export default function Blog({ category, title, body, author, date, id }) {
       <div className="author_desc">
         <img
           className="feature_author_avatar"
-          src={author.avatar ? author.avatar : defaultAvatar}
+          src={author && author.avatar ? author.avatar : defaultAvatar}
           alt="avatar"
         />
         <div>
           <p>
             <span className="dim_i">by </span>
-            <a>{author.name && author.name}</a>
+            <a>{author && author.name && author.name}</a>
           </p>
           <p className="feature_date">{date}</p>
         </div>

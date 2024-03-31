@@ -8,9 +8,8 @@ export default function CreateBlog() {
   const [create, setCreate] = useState({
     title: "",
     body: "",
-    image: "",
     category: "Travel",
-    author: user && user._id,
+    author: user._id,
   });
   const handleInput = (e) => {
     const { value, name } = e.target;
@@ -50,14 +49,14 @@ export default function CreateBlog() {
       body: JSON.stringify(create),
     });
     const response = await request.json();
+
     if (request.status === 201) {
       successToast(response.message);
       setCreate({
         title: "",
         body: "",
-        image: "",
         category: "Travel",
-        author: user && user.username,
+        author: user._id,
       });
     } else {
       errorToast(response.message);
@@ -72,21 +71,14 @@ export default function CreateBlog() {
           value={create.title}
           name="title"
           type="text"
-          placeholder="Title"
+          placeholder="Blog title"
         />
         <textarea
           onChange={handleInput}
           value={create.body}
           name="body"
-          placeholder="Body"
+          placeholder="Blog body... (Supports Markdown)"
         ></textarea>
-        <input
-          onChange={handleInput}
-          value={create.image}
-          name="image"
-          type="url"
-          placeholder="image url (optional)"
-        />
         <div className="create_form_cat">
           <p>Category:</p>
           <select

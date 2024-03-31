@@ -136,7 +136,10 @@ const trending = async (req, res) => {
 
 const feature = async (req, res) => {
   try {
-    const featureBlogs = await Blog.findOne().populate("author");
+    const random_Index = Math.round(Math.random() * 3);
+    const featureBlogs = await Blog.findOne()
+      .skip(random_Index)
+      .populate("author");
     if (featureBlogs) {
       res.status(200).json(featureBlogs);
     } else {
@@ -150,8 +153,9 @@ const feature = async (req, res) => {
 
 const blogs = async (req, res) => {
   try {
-    const blooogs = await Blog.find().limit(9).populate("author");
-    res.status(200).json(blooogs);
+    const { blog_limit } = await req.body;
+    const blooogs = await Blog.find().limit(blog_limit).populate("author");
+    res.status(200).json(blooogs.reverse());
   } catch (error) {
     console.log(chalk.magenta(`[blogs] ${error.message}`));
     res.status(400).json({ message: error.message });
@@ -240,30 +244,6 @@ const singleBlog = async (req, res) => {
   }
 };
 
-const personalBlogCount = async (req, res) => {
-  try {
-    const { id } = await req.body;
-    const count = await Blog.find({ author: id });
-    res.status(200).json({ count: count.length });
-  } catch (error) {
-    console.log(chalk.magenta(`[personalBlogCount] ${error.message}`));
-    res.status(400).json({ message: error.message });
-  }
-};
-
-const blogAuthor = async (req, res) => {
-  try {
-    const { author } = await req.body;
-    const writer = await Author.findOne({ username: author }).select({
-      password: 0,
-    });
-    res.status(200).json(writer);
-  } catch (error) {
-    console.log(chalk.magenta(`[blogAuthor] ${error.message}`));
-    res.status(400).json({ message: error.message });
-  }
-};
-
 export {
   createBlog,
   userBlog,
@@ -280,6 +260,4 @@ export {
   popular,
   count,
   singleBlog,
-  personalBlogCount,
-  blogAuthor,
 };

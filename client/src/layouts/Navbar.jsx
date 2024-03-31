@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../store/auth.jsx";
 // ICONS
@@ -8,7 +9,6 @@ import { FaGithub } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 import { HiMiniBars3 } from "react-icons/hi2";
 import { HiBars3BottomRight } from "react-icons/hi2";
-import { useState } from "react";
 
 export default function Navbar() {
   const { isLoggedIn } = useAuth();
@@ -24,28 +24,28 @@ export default function Navbar() {
           <div className="navbar_social">
             <a
               target="_blank"
-              href="https://github.com/irfanshadikrishad"
+              href="https://youtube.com/@irfanshadikrishad"
               rel="noreferrer"
             >
               {<FaTwitter />}
             </a>
             <a
               target="_blank"
-              href="https://github.com/irfanshadikrishad"
+              href="https://youtube.com/@irfanshadikrishad"
               rel="noreferrer"
             >
               {<FaFacebookF />}
             </a>
             <a
               target="_blank"
-              href="https://github.com/irfanshadikrishad"
+              href="https://youtube.com/@irfanshadikrishad"
               rel="noreferrer"
             >
               {<FaInstagram />}
             </a>
             <a
               target="_blank"
-              href="https://github.com/irfanshadikrishad"
+              href="https://youtube.com/@irfanshadikrishad"
               rel="noreferrer"
             >
               {<FaGithub />}

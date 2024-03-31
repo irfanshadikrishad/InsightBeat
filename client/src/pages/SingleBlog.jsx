@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../store/auth";
+import Markdown from "react-markdown";
+import { PiUserCirclePlusBold } from "react-icons/pi";
 
 export default function SingleBlog() {
   const { SERVER_URI, defaultAvatar } = useAuth();
@@ -38,7 +40,7 @@ export default function SingleBlog() {
         />
       )}
       <h1 className="blogTitle">{single && single.title}</h1>
-      <p className="singleBody">{single && single.body}</p>
+      <Markdown className="singleBody">{single && single.body}</Markdown>
       {single && (
         <div className="singleBlogAuthor">
           <div>
@@ -54,7 +56,12 @@ export default function SingleBlog() {
             />
           </div>
           <div>
-            <p>{single.author && single.author.name}</p>
+            <div className="author_name_single_blog">
+              <p>{single.author && single.author.name}</p>
+              <button className="author_follow">
+                {<PiUserCirclePlusBold />}
+              </button>
+            </div>
             <p>{single && String(single.createdAt).slice(0, 10)}</p>
           </div>
         </div>
