@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 export const AuthContext = createContext();
 
@@ -19,6 +20,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const deleteTokenInLS = () => {
+    setUser(null); // empty out user
     return localStorage.removeItem("logger");
   };
 
@@ -42,6 +44,31 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  function successToast(message) {
+    toast.success(`${message}`, {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  }
+  function errorToast(message) {
+    toast.error(`${message}`, {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  }
+
   useEffect(() => {
     authenticate();
   }, []);
@@ -58,6 +85,9 @@ export const AuthProvider = ({ children }) => {
         token,
         SERVER_URI,
         defaultAvatar,
+        authenticate,
+        successToast,
+        errorToast,
       }}
     >
       {children}

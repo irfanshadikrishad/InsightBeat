@@ -27,15 +27,15 @@ export default function FooterPopular() {
         <h1>Popular</h1>
       </div>
       {popular &&
-        popular.map((pop) => {
+        popular.map(({ _id, category, title, createdAt, author }) => {
           return (
             <FooterArticle
-              key={pop._id}
-              category={pop.category}
-              title={String(pop.title).slice(0, 40) + "..."}
-              date={pop && String(pop.createdAt).slice(0, 10)}
-              author={pop.author}
-              id={pop._id}
+              key={_id}
+              category={category}
+              title={String(title).slice(0, 40) + "..."}
+              date={String(createdAt).slice(0, 10)}
+              author={author}
+              id={_id}
             />
           );
         })}

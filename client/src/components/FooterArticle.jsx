@@ -1,7 +1,14 @@
 import { NavLink } from "react-router-dom";
 import randomColor from "random-color";
+import { memo } from "react";
 
-export default function FooterArticle({ category, title, author, date, id }) {
+const FooterArticle = memo(function FooterArticle({
+  category,
+  title,
+  author,
+  date,
+  id,
+}) {
   const color = randomColor();
 
   return (
@@ -24,4 +31,6 @@ export default function FooterArticle({ category, title, author, date, id }) {
       </div>
     </article>
   );
-}
+});
+
+export default FooterArticle;

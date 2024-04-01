@@ -5,7 +5,7 @@
   --color: #1b1b1b;
   --background: whitesmoke;
   --primary: #efefef;
-  --secondary: #92e3a9;
+  --secondary: seagreen;
   --footer-l: #efefef;
 }
 
@@ -329,7 +329,7 @@ body {
   font-size: 1.3rem;
   border: none;
   display: flex;
-  color: var(--color);
+  color: var(--footer-l);
   background-color: var(--secondary);
   padding: 5px;
   border-radius: 10px;
@@ -759,6 +759,52 @@ footer {
 
 .trendingTitle > h3 {
   font-weight: 400;
+}
+.my_blogs_container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 5px 0 20px 0;
+}
+.my_single_blog {
+  background-color: var(--primary);
+  padding: 10px;
+  border-radius: 7px;
+  color: var(--color);
+  position: relative;
+}
+.my_single_blog > a {
+  text-decoration: none;
+  color: var(--secondary);
+  font-weight: 600;
+}
+.my_blogs_buttons {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  background-color: var(--footer-l);
+  padding: 5px;
+  border-radius: 7px;
+}
+.my_blogs_buttons > button {
+  border: none;
+  font-size: 1.3rem;
+  background-color: transparent;
+  border-radius: 7px;
+  cursor: pointer;
+  display: flex;
+}
+.my_blogs_buttons > button:first-child {
+  color: var(--secondary);
+}
+.my_blogs_buttons > button:last-child {
+  color: coral;
+}
+.my_single_blog_desc {
+  opacity: 70%;
 }
 
 @media screen and (max-width: 1440px) {

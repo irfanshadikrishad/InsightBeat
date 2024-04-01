@@ -1,8 +1,14 @@
+import { useEffect } from "react";
 import { useAuth } from "../store/auth";
 
 export default function ProfileHeader() {
-  const { user, defaultAvatar } = useAuth();
+  const { user, defaultAvatar, authenticate } = useAuth();
 
+  useEffect(() => {
+    if (!user) {
+      authenticate();
+    }
+  }, []);
   return (
     <section className="profile">
       <div className="profile_blogs_count">

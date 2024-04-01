@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useAuth } from "../store/auth";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function EditProfile() {
-  const { user, token, SERVER_URI } = useAuth();
+  const { user, token, SERVER_URI, successToast, errorToast } = useAuth();
   const [edit, setEdit] = useState({
     id: user._id,
     avatar: user.avatar,
@@ -16,30 +16,6 @@ export default function EditProfile() {
     const { name, value } = e.target;
     setEdit({ ...edit, [name]: value });
   };
-  function successToast(message) {
-    toast.success(message, {
-      position: "top-right",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  }
-  function errorToast(message) {
-    toast.error(message, {
-      position: "top-right",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  }
   const handleSubmit = async (e) => {
     e.preventDefault();
     const request = await fetch(`${SERVER_URI}/api/auth/edit`, {
@@ -97,7 +73,7 @@ export default function EditProfile() {
           placeholder="Your Email"
           value={edit.email}
         />
-        <button type="submit">Save</button>
+        <button type="submit">Update</button>
       </form>
       <ToastContainer />
     </section>

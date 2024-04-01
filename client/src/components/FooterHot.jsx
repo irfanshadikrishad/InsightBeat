@@ -27,15 +27,15 @@ export default function FooterHot() {
         <h1>Editor&apos;s pick</h1>
       </div>
       {editorsPick &&
-        editorsPick.map((edit) => {
+        editorsPick.map(({ _id, title, category, createdAt, author }) => {
           return (
             <FooterArticle
-              key={edit._id}
-              title={String(edit.title).slice(0, 40) + "..."}
-              category={edit.category}
-              date={edit && String(edit.createdAt).slice(0, 10)}
-              author={edit.author}
-              id={edit._id}
+              key={_id}
+              title={String(title).slice(0, 40) + "..."}
+              category={category}
+              date={String(createdAt).slice(0, 10)}
+              author={author}
+              id={_id}
             />
           );
         })}

@@ -28,15 +28,15 @@ export default function FooterTrending() {
         <h1>Trending</h1>
       </div>
       {trending &&
-        trending.map((tren) => {
+        trending.map(({ _id, category, title, author, createdAt }) => {
           return (
             <FooterArticle
-              key={tren._id}
-              category={tren.category}
-              title={String(tren.title).slice(0, 40) + "..."}
-              author={tren.author}
-              date={String(tren.createdAt).slice(0, 10)}
-              id={tren._id}
+              key={_id}
+              category={category}
+              title={String(title).slice(0, 40) + "..."}
+              author={author}
+              date={String(createdAt).slice(0, 10)}
+              id={_id}
             />
           );
         })}

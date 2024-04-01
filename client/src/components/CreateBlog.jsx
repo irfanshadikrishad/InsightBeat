@@ -1,44 +1,20 @@
 import { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useAuth } from "../store/auth";
+import MDEditor from "@uiw/react-md-editor";
 
 export default function CreateBlog() {
-  const { user, SERVER_URI } = useAuth();
+  const { user, SERVER_URI, successToast, errorToast } = useAuth();
+  const [body, setBody] = useState("");
   const [create, setCreate] = useState({
     title: "",
-    body: "",
     category: "Travel",
-    author: user._id,
   });
   const handleInput = (e) => {
     const { value, name } = e.target;
     setCreate({ ...create, [name]: value });
   };
-  function errorToast(error) {
-    toast.warn(error, {
-      position: "top-right",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-    });
-  }
-  function successToast(success) {
-    toast.success(success, {
-      position: "top-right",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-    });
-  }
   const submit = async (e) => {
     e.preventDefault();
     const request = await fetch(`${SERVER_URI}/api/blog/create`, {
@@ -46,18 +22,24 @@ export default function CreateBlog() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(create),
+      body: JSON.stringify({
+        title: create.title,
+        body,
+        category: create.category,
+        author: user._id,
+      }),
     });
     const response = await request.json();
 
     if (request.status === 201) {
+      // toast
       successToast(response.message);
+      // reset
       setCreate({
         title: "",
-        body: "",
         category: "Travel",
-        author: user._id,
       });
+      setBody("");
     } else {
       errorToast(response.message);
     }
@@ -73,12 +55,22 @@ export default function CreateBlog() {
           type="text"
           placeholder="Blog title"
         />
-        <textarea
-          onChange={handleInput}
-          value={create.body}
-          name="body"
-          placeholder="Blog body... (Supports Markdown)"
-        ></textarea>
+        <section data-color-mode="light">
+          <MDEditor
+            value={body}
+            onChange={(e) => {
+              setBody(e);
+            }}
+            name="body"
+            preview="edit"
+            visibleDragbar={true}
+            height="100%"
+          />
+          <MDEditor.Markdown
+            source={create.body}
+            style={{ whiteSpace: "pre-wrap" }}
+          />
+        </section>
         <div className="create_form_cat">
           <p>Category:</p>
           <select

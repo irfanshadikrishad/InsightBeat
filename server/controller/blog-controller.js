@@ -244,6 +244,20 @@ const singleBlog = async (req, res) => {
   }
 };
 
+const deleteBlog = async (req, res) => {
+  try {
+    const { id } = await req.body;
+    const deleted = await Blog.findByIdAndDelete(id);
+    if (deleted) {
+      console.log(`${deleted._id} deleted successfully`);
+      res.status(200).json({ message: "deleted successfully" });
+    }
+  } catch (error) {
+    console.log(chalk.magenta(`[deleteBlog] ${error.message}`));
+    res.status(400).json({ message: error.message });
+  }
+};
+
 export {
   createBlog,
   userBlog,
@@ -260,4 +274,5 @@ export {
   popular,
   count,
   singleBlog,
+  deleteBlog,
 };

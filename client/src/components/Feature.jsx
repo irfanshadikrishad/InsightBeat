@@ -23,7 +23,7 @@ export default function Feature() {
   }, [setFeature]);
   return (
     <>
-      {feature && (
+      {feature.author && (
         <section className="feature">
           {feature.image && (
             <img

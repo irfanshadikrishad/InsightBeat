@@ -1,6 +1,7 @@
+import { memo } from "react";
 import randomColor from "random-color";
 
-export default function FooterBrowseBox({ category, count }) {
+const FooterBrowseBox = memo(function FooterBrowseBox({ category, count }) {
   const color = randomColor();
 
   return (
@@ -17,4 +18,6 @@ export default function FooterBrowseBox({ category, count }) {
       <hr />
     </div>
   );
-}
+});
+
+export default FooterBrowseBox;

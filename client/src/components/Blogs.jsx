@@ -31,16 +31,16 @@ export default function Blogs() {
     <section>
       <section className="blogs">
         {blogs &&
-          blogs.map((singleBlog) => {
+          blogs.map(({ _id, category, author, createdAt, title, body }) => {
             return (
               <Blog
-                key={singleBlog._id}
-                category={singleBlog.category}
-                author={singleBlog.author}
-                date={singleBlog && String(singleBlog.createdAt).slice(0, 10)}
-                title={String(singleBlog.title).slice(0, 33) + "..."}
-                body={String(singleBlog.body).slice(0, 150) + "..."}
-                id={singleBlog._id}
+                key={_id}
+                category={category}
+                author={author}
+                date={String(createdAt).slice(0, 10)}
+                title={String(title).slice(0, 33) + "..."}
+                body={String(body).slice(0, 150) + "..."}
+                id={_id}
               />
             );
           })}

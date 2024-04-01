@@ -23,15 +23,15 @@ export default function Trending() {
   return (
     <section className="trending_boxes">
       {trending &&
-        trending.map((tren) => {
+        trending.map(({ _id, category, title, author, createdAt }) => {
           return (
             <TrendingBox
-              key={tren && tren._id}
-              category={tren && tren.category}
-              title={tren && tren.title.slice(0, 50) + "..."}
-              author={tren && tren.author}
-              date={tren && String(tren.createdAt).slice(0, 10)}
-              id={tren && tren._id}
+              key={_id}
+              category={category}
+              title={title.slice(0, 50) + "..."}
+              author={author}
+              date={String(createdAt).slice(0, 10)}
+              id={_id}
             />
           );
         })}

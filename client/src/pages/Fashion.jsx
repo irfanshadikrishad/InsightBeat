@@ -30,16 +30,16 @@ export default function Fashion() {
       <h1>Fashion &gt;&gt;</h1>
       <div className="individuals">
         {blogs.length > 0 ? (
-          blogs.map((blog) => {
+          blogs.map(({ _id, title, body, createdAt, author, category }) => {
             return (
               <Blog
-                key={blog._id}
-                title={blog.title.slice(0, 45) + "..."}
-                body={blog.body.slice(0, 150) + "..."}
-                date={String(blog.createdAt).slice(0, 10)}
-                author={blog.author.name}
-                category={blog.category}
-                id={blog._id}
+                key={_id}
+                title={title.slice(0, 45) + "..."}
+                body={body.slice(0, 150) + "..."}
+                date={String(createdAt).slice(0, 10)}
+                author={author.name}
+                category={category}
+                id={_id}
               />
             );
           })
