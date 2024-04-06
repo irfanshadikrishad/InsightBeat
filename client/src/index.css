@@ -245,6 +245,7 @@ body {
   color: var(--color);
   line-height: 27px;
   font-weight: 400;
+  overflow-wrap: anywhere;
 }
 
 .author_desc {
@@ -268,6 +269,7 @@ body {
 .blog_body {
   font-size: 0.9rem;
   opacity: 50%;
+  overflow-wrap: anywhere;
 }
 
 .blog_footer {
@@ -378,6 +380,7 @@ footer {
   font-size: 1rem;
   padding: 5px 0 10px 0;
   font-weight: 400;
+  overflow-wrap: anywhere;
 }
 
 .footer_author {
@@ -715,7 +718,9 @@ footer {
   line-height: 35px;
   padding: 5px 0;
 }
-
+.singleBody {
+  overflow-wrap: anywhere;
+}
 .footer_article > a {
   text-decoration: none;
   color: var(--color);

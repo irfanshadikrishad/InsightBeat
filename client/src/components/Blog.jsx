@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../store/auth";
-import Markdown from "react-markdown";
 
 export default function Blog({ category, title, body, author, date, id }) {
   const { defaultAvatar } = useAuth();
@@ -29,7 +28,7 @@ export default function Blog({ category, title, body, author, date, id }) {
           <p className="feature_date">{date}</p>
         </div>
       </div>
-      <Markdown className="blog_body">{body}</Markdown>
+      <p className="blog_body">{body}</p>
     </article>
   );
 }

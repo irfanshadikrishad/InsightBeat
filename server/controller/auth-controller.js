@@ -86,7 +86,7 @@ const user = async (req, res) => {
 const editUser = async (req, res) => {
   try {
     const { id, username, avatar, email, name } = await req.body;
-    console.log(id, username, avatar, email, name);
+    // need to verify if username or email exist's to be changed to
     const update = await Author.findByIdAndUpdate(id, {
       username,
       avatar,
