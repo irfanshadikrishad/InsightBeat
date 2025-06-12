@@ -6,11 +6,11 @@ import "react-toastify/dist/ReactToastify.css";
 export default function EditProfile() {
   const { user, token, SERVER_URI, successToast, errorToast } = useAuth();
   const [edit, setEdit] = useState({
-    id: user._id,
-    avatar: user.avatar,
-    name: user.name,
-    username: user.username,
-    email: user.email,
+    id: user?._id,
+    avatar: user?.avatar,
+    name: user?.name,
+    username: user?.username,
+    email: user?.email,
   });
   const handleEdit = (e) => {
     const { name, value } = e.target;

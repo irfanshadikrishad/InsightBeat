@@ -13,7 +13,7 @@ app.use(
   cors({
     origin: ["https://insight-beat.vercel.app", "http://localhost:5173"],
     methods: "*",
-  })
+  }),
 );
 app.use("/api/auth", authRouter);
 app.use("/api/blog", blogRouter);

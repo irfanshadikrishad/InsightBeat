@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  let SERVER_URI = "https://insightbeat.onrender.com";
+  let SERVER_URI = "https://insightbeat-son5.onrender.com";
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [token, setToken] = useState(localStorage.getItem("logger"));
